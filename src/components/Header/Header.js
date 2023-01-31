@@ -11,7 +11,7 @@ const Header = () => {
       <div className="header__container">
         <img src={logoImage} alt="Weather Logo" className="header__logo" />
         <p className="header__info">
-          Sample Text
+          June 15, New York
           {/* {currentDate}, {weatherData.city} */}
         </p>
       </div>
@@ -22,7 +22,7 @@ const Header = () => {
           </li>
           <li>
             <p className="navigation__user-info">
-              UserNameHere
+              Terrence Tegegne
               <img
                 className="navigation__avatar"
                 src={avatarImage}

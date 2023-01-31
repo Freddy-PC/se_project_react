@@ -1,6 +1,6 @@
 @font-face {
   font-family: "Cabinet Grotesk";
-  src: url("../../fonts/CabinetGrotesk-Medium.otf");
+  src: url("../../fonts/CabinetGrotesk-Regular.otf");
 }
 /* Should i put a format name for openType*/
 .header {
@@ -14,14 +14,15 @@
   align-items: center;
 }
 .header__logo {
-  height: 40px;
-  width: 89px;
+  max-height: 40px;
+  max-width: 89px;
 }
 .header__info {
-  margin: 0;
-  font-family: "Cabinet Grotesk";
-  /* font-size: 20px;
-  line-height: 24px; */
+  margin: 0 0 0 24px;
+  font-family: "Cabinet Grotesk", "Arial", sans-serif;
+  line-height: 24px;
+  font-size: 20px;
+  font-weight: 700;
 }
 .header__nav {
   display: flex;
@@ -31,12 +32,17 @@
   list-style: none;
   display: flex;
   align-items: center;
+  margin: 0;
 }
 .navigation__button {
   padding: 0;
   border: none;
   background-color: #dcdcdc;
-  font-family: "Cabinet Grotesk";
+  font-family: "Cabinet Grotesk", "Arial", sans-serif;
+  font-family: Cabinet Grotesk;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 24px;
 }
 .navigation__button:hover {
   cursor: pointer;
@@ -46,8 +52,11 @@
   margin: 0 0 0 20px;
   display: flex;
   align-items: center;
-  font-family: "Cabinet Grotesk";
-  /* line-height: 24px; */
+  font-family: "Cabinet Grotesk", "Arial", sans-serif;
+  font-family: Cabinet Grotesk;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 25px;
 }
 .navigation__avatar {
   width: 40x;
