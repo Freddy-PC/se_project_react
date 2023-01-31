@@ -1,6 +1,7 @@
 // import React from "react";
 import "./Header.css";
 import logoImage from "../../images/logo.png";
+import avatarImage from "../../images/avatar-image.png";
 
 const Header = () => {
   // if statement for weather
@@ -9,22 +10,27 @@ const Header = () => {
     <header className="header">
       <div className="header__container">
         <img src={logoImage} alt="Weather Logo" className="header__logo" />
-        <p className="header__date">
-          {currentDate}, {weatherData.city}
+        <p className="header__info">
+          Sample Text
+          {/* {currentDate}, {weatherData.city} */}
         </p>
       </div>
       <div className="header__nav">
-        <nav className="navigation">
-          <ul className="navigation__container">
-            <li>
-              /* Add click handler for button */
-              <button className="navigation__button">+ Add clothes</button>
-            </li>
-            <li>
-              <div className="navigation__link"></div>
-            </li>
-          </ul>
-        </nav>
+        <ul className="navigation__container">
+          <li>
+            <button className="navigation__button">+ Add clothes</button>
+          </li>
+          <li>
+            <p className="navigation__user-info">
+              UserNameHere
+              <img
+                className="navigation__avatar"
+                src={avatarImage}
+                alt="user avatar"
+              />
+            </p>
+          </li>
+        </ul>
       </div>
     </header>
   );

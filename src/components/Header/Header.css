@@ -1,0 +1,56 @@
+@font-face {
+  font-family: "Cabinet Grotesk";
+  src: url("../../fonts/CabinetGrotesk-Medium.otf");
+}
+/* Should i put a format name for openType*/
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 1360px;
+}
+.header__container {
+  display: flex;
+  align-items: center;
+}
+.header__logo {
+  height: 40px;
+  width: 89px;
+}
+.header__info {
+  margin: 0;
+  font-family: "Cabinet Grotesk";
+  /* font-size: 20px;
+  line-height: 24px; */
+}
+.header__nav {
+  display: flex;
+  justify-content: flex-end;
+}
+.navigation__container {
+  list-style: none;
+  display: flex;
+  align-items: center;
+}
+.navigation__button {
+  padding: 0;
+  border: none;
+  background-color: #dcdcdc;
+  font-family: "Cabinet Grotesk";
+}
+.navigation__button:hover {
+  cursor: pointer;
+  opacity: 50%;
+}
+.navigation__user-info {
+  margin: 0 0 0 20px;
+  display: flex;
+  align-items: center;
+  font-family: "Cabinet Grotesk";
+  /* line-height: 24px; */
+}
+.navigation__avatar {
+  width: 40x;
+  height: 40px;
+  margin-left: 12px;
+}
