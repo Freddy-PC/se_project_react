@@ -3,17 +3,19 @@ import "./Header.css";
 import logoImage from "../../images/logo.png";
 import avatarImage from "../../images/avatar-image.png";
 
-const Header = () => {
-  // if statement for weather
-  //   const currentDate = new Date().toLocaleString('default', { month: 'long', day: 'numeric' });
+const Header = ({ weatherData }) => {
+  if (!weatherData) return null;
+  const currentDate = new Date().toLocaleString("default", {
+    month: "long",
+    day: "numeric",
+  });
 
   return (
     <header className="header">
       <div className="header__container">
         <img src={logoImage} alt="Weather Logo" className="header__logo" />
         <p className="header__info">
-          June 15, New York
-          {/* {currentDate}, {weatherData.city} */}
+          {currentDate}, {weatherData.city}
         </p>
       </div>
       <div className="header__nav">

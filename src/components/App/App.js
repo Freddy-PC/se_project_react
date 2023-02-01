@@ -21,18 +21,18 @@ const App = () => {
       getWeather(latitude, longitude, key)
         .then((data) => {
           // Update weather info
-          // Console.log returns all data
+          // console.log(data) returns all data
           setWeatherData(setDataFromWeatherApi(data));
         })
         .catch((err) => console.log(err));
     }
   }, []);
-  // Only called once to prevent Error:
+  // Only called once to prevent Error: 429
 
   return (
     <div className="page">
       <div className="page__container">
-        <Header />
+        <Header weatherData={weatherData} />
         <Main weatherData={weatherData} />
         <Footer />
       </div>
