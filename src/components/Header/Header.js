@@ -40,5 +40,3 @@ const Header = ({ weatherData }) => {
 };
 
 export default Header;
-
-// WeatherData.city will display the city from openWeather API
