@@ -1,10 +1,11 @@
-// import React from "react";
+import React from "react";
 import "./Header.css";
 import logoImage from "../../images/logo.png";
 import avatarImage from "../../images/avatar-image.png";
 
 const Header = () => {
   // if statement for weather
+  //   const currentDate = new Date().toLocaleString('default', { month: 'long', day: 'numeric' });
 
   return (
     <header className="header">
