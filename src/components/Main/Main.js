@@ -3,7 +3,8 @@ import "./Main.css";
 import WeatherCard from "../WeatherCard/WeatherCard";
 import ItemCard from "../ItemCard/ItemCard";
 
-function Main({ weatherData, cards }) {
+// cardClick = when image clicked...
+function Main({ weatherData, cards, cardClick }) {
   const currentWeather = weatherData.temperature;
 
   // Filter cards via temp and condition
@@ -28,7 +29,11 @@ function Main({ weatherData, cards }) {
         {cards
           .filter((card) => card.weather === weatherType())
           .map((filteredCard) => (
-            <ItemCard clothing={filteredCard} key={filteredCard._id} />
+            <ItemCard
+              clothing={filteredCard}
+              key={filteredCard._id}
+              cardClick={cardClick}
+            />
           ))}
       </ul>
     </main>
