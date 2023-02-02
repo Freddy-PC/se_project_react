@@ -1,9 +1,9 @@
 /* Removed default styles */
 .page {
   background-color: #dcdcdc;
-  max-width: 1360px;
-  margin: 0 auto;
+  max-width: 1440px;
   padding: 32px 40px 20px;
 }
-/* .page__container {
-} */
+.page__container {
+  margin: 0 auto;
+}

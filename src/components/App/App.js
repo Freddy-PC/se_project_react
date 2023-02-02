@@ -10,6 +10,7 @@ import {
   weatherForecast,
 } from "../../utils/constants";
 import { getWeather, setDataFromWeatherApi } from "../../utils/weatherApi";
+import { defaultClothingItems } from "../../utils/clothingItems";
 
 const App = () => {
   const [weatherData, setWeatherData] = useState({});
@@ -33,7 +34,10 @@ const App = () => {
     <div className="page">
       <div className="page__container">
         <Header weatherData={weatherData} />
-        <Main weatherData={weatherData} />
+        <Main
+          weatherData={weatherData}
+          defaultClothingItems={defaultClothingItems}
+        />
         <Footer />
       </div>
     </div>
