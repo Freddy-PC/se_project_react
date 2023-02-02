@@ -3,17 +3,19 @@ import "./Main.css";
 import WeatherCard from "../WeatherCard/WeatherCard";
 import ItemCard from "../ItemCard/ItemCard";
 
-function Main({ weatherData, defaultClothingItems }) {
+function Main({ weatherData, cards }) {
   const currentWeather = weatherData.temperature;
 
-  // Filter cards via temp
-  //   if (currentWeather >= 86) {
-  //     return "hot";
-  //   } else if (currentWeather >= 66 && currentWeather <= 85) {
-  //     return "warm";
-  //   } else if (currentWeather <= 65) {
-  //     return "cold";
-  //   }
+  // Filter cards via temp and condition
+  const weatherType = () => {
+    if (currentWeather >= 86) {
+      return "hot";
+    } else if (currentWeather >= 66 && currentWeather <= 85) {
+      return "warm";
+    } else if (currentWeather <= 65) {
+      return "cold";
+    }
+  };
 
   return (
     <main className="main">
@@ -22,9 +24,11 @@ function Main({ weatherData, defaultClothingItems }) {
         Today is {Math.round(currentWeather)}°F / You may want to wear:
       </h3>
       <ul className="main__items">
-        {defaultClothingItems.map((card) => (
-          <ItemCard clothing={card} key={card._id} />
-        ))}
+        {cards
+          .filter((card) => card.weather === weatherType())
+          .map((filteredCard) => (
+            <ItemCard clothing={filteredCard} key={filteredCard._id} />
+          ))}
       </ul>
     </main>
   );

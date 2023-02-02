@@ -34,10 +34,7 @@ const App = () => {
     <div className="page">
       <div className="page__container">
         <Header weatherData={weatherData} />
-        <Main
-          weatherData={weatherData}
-          defaultClothingItems={defaultClothingItems}
-        />
+        <Main weatherData={weatherData} cards={defaultClothingItems} />
         <Footer />
       </div>
     </div>
