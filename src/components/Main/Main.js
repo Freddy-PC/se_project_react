@@ -16,6 +16,7 @@ function Main({ weatherData, cards }) {
       return "cold";
     }
   };
+  // If need to see all cards then comment weatherType and .filter
 
   return (
     <main className="main">
