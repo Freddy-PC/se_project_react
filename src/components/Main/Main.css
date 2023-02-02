@@ -10,6 +10,23 @@
   font-size: 20px;
   font-weight: 700;
   line-height: 25px;
+  margin: 40px 0 0 0;
 }
 
-/* .main__items{} */
+.main__items {
+  flex-wrap: wrap;
+  display: flex;
+  grid-gap: 20px 17px;
+  margin: 34px 0 170px 0;
+  padding: 0;
+}
+
+/* grid
+.main__items {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, 324px);
+  grid-gap: 20px 17px;
+  justify-content: center;
+  margin: 34px 0 170px 0;
+  padding: 0;
+} */
