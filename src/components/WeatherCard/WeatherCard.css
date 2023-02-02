@@ -6,7 +6,7 @@
 .weather-card {
   max-width: 1360px;
   height: 80px;
-  margin-top: 28px;
+  margin: 28px auto;
   display: flex;
   justify-content: space-between;
   overflow: hidden;
