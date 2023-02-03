@@ -3,7 +3,7 @@ import "./Header.css";
 import logoImage from "../../images/logo.png";
 import avatarImage from "../../images/avatar-image.png";
 
-const Header = ({ weatherData }) => {
+const Header = ({ weatherData, addModalClick }) => {
   if (!weatherData) return null;
   const currentDate = new Date().toLocaleString("default", {
     month: "long",
@@ -21,7 +21,9 @@ const Header = ({ weatherData }) => {
       <div className="header__nav">
         <ul className="navigation__container">
           <li>
-            <button className="navigation__button">+ Add clothes</button>
+            <button className="navigation__button" onClick={addModalClick}>
+              + Add clothes
+            </button>
           </li>
           <li>
             <p className="navigation__user-info">
