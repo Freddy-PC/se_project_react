@@ -1,9 +1,12 @@
 /* Removed default styles */
 .page {
-  background-color: #dcdcdc;
-  max-width: 1440px;
-  padding: 32px 40px 20px;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  display: flex;
+  flex-direction: column;
 }
 .page__container {
-  margin: 0 auto;
+  padding: 32px 40px 20px;
+  background-color: #dcdcdc;
 }

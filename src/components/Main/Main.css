@@ -3,7 +3,10 @@
   src: url("../../fonts/CabinetGrotesk-Regular.otf");
 }
 
-/* .main{} */
+.main {
+  margin: 0 auto;
+  max-width: 1360px;
+}
 
 .main__header {
   font-family: "Cabinet Grotesk", "Arial", sans-serif;

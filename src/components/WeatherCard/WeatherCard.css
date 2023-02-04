@@ -4,7 +4,6 @@
 }
 
 .weather-card {
-  max-width: 1360px;
   height: 80px;
   margin: 28px auto;
   display: flex;
