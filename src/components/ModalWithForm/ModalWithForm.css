@@ -1,0 +1,113 @@
+@font-face {
+  font-family: "Cabinet Grotesk Bold";
+  src: url("../../fonts/CabinetGrotesk-Bold.otf");
+}
+
+.modal {
+  z-index: 1;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/*  */
+
+.modal__container {
+  background-color: white;
+  position: relative;
+  height: 436px;
+  width: 496px;
+  border-radius: 20px;
+}
+.modal__close-button {
+  background: transparent url(../../images/grey-close-button.svg) center
+    no-repeat;
+  border: none;
+  cursor: pointer;
+  width: 14px;
+  height: 14px;
+  position: absolute;
+  right: 27px;
+  top: 27px;
+}
+.item-modal__close-button:hover {
+  opacity: 50%;
+  cursor: pointer;
+}
+.modal__title {
+  font-family: "Cabinet Grotesk Bold", "Arial", sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 20px;
+  margin: 28px 0 24px 28px;
+}
+
+/*  */
+
+.form {
+  margin-left: 28px;
+}
+.form__heading {
+  font-family: "Cabinet Grotesk Bold", "Arial", sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 20px;
+  margin-bottom: 8px;
+}
+.form__input {
+  border-style: none;
+  border-bottom: 1px solid;
+  width: 440px;
+  font-family: "Cabinet Grotesk Bold", "Arial", sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 20px;
+}
+.form__radio-container {
+  display: flex;
+  flex-direction: column;
+  row-gap: 10px; /* Gap between only form__radio */
+  align-items: flex-start;
+}
+.form__radio {
+}
+.form__input_type_radio {
+  margin: 0 8px 0 0;
+  cursor: pointer;
+}
+.form__input_type_radio:checked + label {
+  color: rgba(0, 0, 0, 1);
+}
+/* How do i make button black ?*/
+.form__radio-label {
+  font-family: "Cabinet Grotesk Bold", "Arial", sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 20px;
+  color: rgba(0, 0, 0, 0.5);
+}
+.form__submit-button {
+  margin-top: 32px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 36px;
+  width: 124px;
+  border-radius: 4px;
+  font-family: "Cabinet Grotesk Bold", "Arial", sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 20px;
+  background-color: rgba(0, 0, 0, 1);
+  color: #fff;
+}
+.form__submit-button:hover {
+  opacity: 0.6;
+}
