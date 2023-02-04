@@ -6,7 +6,7 @@ The idea of the application is pretty simple - we make a call to an API, which t
 
 ## GitHub
 
-[Link to Porject on GitHub](https://Freddy-PC.github.io/se_project_react)
+[Link to Project on GitHub](https://Freddy-PC.github.io/se_project_react)
 
 ## Figma
 
