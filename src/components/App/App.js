@@ -23,15 +23,24 @@ const App = () => {
   // When image clicked...(clothing property accessed via 'card')
   const handleClick = (card) => {
     setSelectedCard(card);
-    setActiveModal("preview");
+    setActiveModal(MODAL_TYPE.ADD);
   };
+
+  // Use 'enum' style to add values
+  const MODAL_TYPE = {
+    ADD: "add", // + Add clothes button
+    PREVIEW: "preview", // Clothing images
+  };
+
+  /* How should I go about closing with the Escape Key
+     or pressing outside the modal ??? */
 
   // On Modal when button clicked not 'preview'
   const closeAllModals = () => {
     setActiveModal("");
   };
 
-  // Retreive data from weatherAPI
+  // Get data from weatherAPI
   useEffect(() => {
     if (latitude && longitude) {
       // Get weather info
@@ -71,7 +80,7 @@ const App = () => {
           <NewClothingForm />
         </ModalWithForm>
       )}
-      {activeModal === "preview" && (
+      {activeModal === MODAL_TYPE.ADD && (
         <ItemModal card={selectedCard} onClose={closeAllModals} />
       )}
     </div>
