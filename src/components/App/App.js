@@ -23,7 +23,7 @@ const App = () => {
   // When image clicked...(clothing property accessed via 'card')
   const handleClick = (card) => {
     setSelectedCard(card);
-    setActiveModal(MODAL_TYPE.ADD);
+    setActiveModal(MODAL_TYPE.PREVIEW);
   };
 
   // Use 'enum' style to add values
@@ -60,7 +60,7 @@ const App = () => {
         <Header
           weatherData={weatherData}
           addModalClick={() => {
-            setActiveModal("add");
+            setActiveModal(MODAL_TYPE.ADD);
           }}
         />
         <Main
@@ -71,7 +71,7 @@ const App = () => {
         <Footer />
       </div>
 
-      {activeModal === "add" && (
+      {activeModal === MODAL_TYPE.ADD && (
         <ModalWithForm
           title="New garment"
           buttonText="Add garment"
@@ -80,7 +80,7 @@ const App = () => {
           <NewClothingForm />
         </ModalWithForm>
       )}
-      {activeModal === MODAL_TYPE.ADD && (
+      {activeModal === MODAL_TYPE.PREVIEW && (
         <ItemModal card={selectedCard} onClose={closeAllModals} />
       )}
     </div>
