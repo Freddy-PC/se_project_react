@@ -47,7 +47,6 @@ const App = () => {
       getWeather(latitude, longitude, key)
         .then((data) => {
           // Update weather info
-          // console.log(data) returns all data
           setWeatherData(setDataFromWeatherApi(data));
         })
         .catch((err) => console.log(err));
