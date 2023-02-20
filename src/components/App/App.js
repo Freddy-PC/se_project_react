@@ -14,6 +14,7 @@ import { defaultClothingItems } from "../../utils/clothingItems";
 import ItemModal from "../ItemModal/ItemModal";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import NewClothingForm from "../../components/ModalWithForm/NewClothingForm";
+import CurrentTemperatureUnitContext from "../../contexts/CurrentTemperatureUnitContext";
 
 const App = () => {
   const [weatherData, setWeatherData] = useState({});
@@ -53,35 +54,41 @@ const App = () => {
     }
   }, []); // Only called once to prevent Error: 429
 
+  /* Should 'CurrentTemperatureUnitContext' only wrap around Header and Main
+     since other components and settings dont need it */
   return (
     <div className="page">
-      <div className="page__container">
-        <Header
-          weatherData={weatherData}
-          addModalClick={() => {
-            setActiveModal(MODAL_TYPE.ADD);
-          }}
-        />
-        <Main
-          weatherData={weatherData}
-          cards={defaultClothingItems}
-          cardClick={handleClick}
-        />
-        <Footer />
-      </div>
+      <CurrentTemperatureUnitContext.Provider
+        value={{ currentTemperatureUnit, handleToggleSwitchChange }}
+      >
+        <div className="page__container">
+          <Header
+            weatherData={weatherData}
+            addModalClick={() => {
+              setActiveModal(MODAL_TYPE.ADD);
+            }}
+          />
+          <Main
+            weatherData={weatherData}
+            cards={defaultClothingItems}
+            cardClick={handleClick}
+          />
+          <Footer />
+        </div>
 
-      {activeModal === MODAL_TYPE.ADD && (
-        <ModalWithForm
-          title="New garment"
-          buttonText="Add garment"
-          onClose={closeAllModals}
-        >
-          <NewClothingForm />
-        </ModalWithForm>
-      )}
-      {activeModal === MODAL_TYPE.PREVIEW && (
-        <ItemModal card={selectedCard} onClose={closeAllModals} />
-      )}
+        {activeModal === MODAL_TYPE.ADD && (
+          <ModalWithForm
+            title="New garment"
+            buttonText="Add garment"
+            onClose={closeAllModals}
+          >
+            <NewClothingForm />
+          </ModalWithForm>
+        )}
+        {activeModal === MODAL_TYPE.PREVIEW && (
+          <ItemModal card={selectedCard} onClose={closeAllModals} />
+        )}
+      </CurrentTemperatureUnitContext.Provider>
     </div>
   );
 };
