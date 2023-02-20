@@ -2,6 +2,7 @@ import React from "react";
 import "./Header.css";
 import logoImage from "../../images/logo.png";
 import avatarImage from "../../images/avatar-image.png";
+import ToggleSwitch from "../ToggleSwitch/ToggleSwitch";
 
 const Header = ({ weatherData, addModalClick }) => {
   if (!weatherData) return null;
@@ -20,6 +21,7 @@ const Header = ({ weatherData, addModalClick }) => {
       </div>
       <div className="header__nav">
         <ul className="navigation__container">
+          <ToggleSwitch />
           <li>
             <button className="navigation__button" onClick={addModalClick}>
               + Add clothes
