@@ -54,6 +54,14 @@ const App = () => {
     }
   }, []); // Only called once to prevent Error: 429
 
+  const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState("F");
+  // Handle changing temp
+  const handleToggleSwitchChange = () => {
+    currentTemperatureUnit === "F"
+      ? setCurrentTemperatureUnit("C")
+      : setCurrentTemperatureUnit("F");
+  };
+
   /* Should 'CurrentTemperatureUnitContext' only wrap around Header and Main
      since other components and settings dont need it */
   return (
