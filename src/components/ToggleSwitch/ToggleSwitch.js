@@ -7,29 +7,31 @@ const ToggleSwitch = () => {
   const { currentTemperatureUnit, handleToggleSwitchChange } = useContext(
     CurrentTemperatureUnitContext
   );
-  //
   const [isChecked, setIsChecked] = useState(currentTemperatureUnit === "C");
-  //
   useEffect(
     () => setIsChecked(currentTemperatureUnit === "C"),
     [currentTemperatureUnit]
   );
 
-  /* checked = 
-     onChange = 
-     value =  */
+  /* when checkbox is clicked:
+     checked = when 'isChecked' is clicked setIsChecked..
+     onChange = temp to F or C
+     value =  value of temp*/
   return (
-    <div className="toggle-switch">
-      <label className="toggle-switch__label">
-        <input
-          className=""
-          type="checkbox"
-          checked={isChecked}
-          onChange={handleToggleSwitchChange}
-          value={currentTemperatureUnit}
-        />
-      </label>
-    </div>
+    <label className="toggle-switch">
+      <input
+        className="toggle-switch__checkbox"
+        type="checkbox"
+        checked={isChecked}
+        onChange={handleToggleSwitchChange}
+        value={currentTemperatureUnit}
+      />
+      <div className="toggle-switch__slider" />
+      <div className="toggle-switch__labels">
+        <span>F</span>
+        <span>C</span>
+      </div>
+    </label>
   );
 };
 

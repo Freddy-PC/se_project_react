@@ -1,0 +1,63 @@
+.toggle-switch {
+  margin-right: 20px;
+  width: 56px;
+  height: 28px;
+  cursor: pointer;
+  background: #fff;
+  border: 2px solid #7e7e7e;
+  border-radius: 20px;
+  position: relative;
+}
+.toggle-switch:hover {
+  border: 2px solid #000000;
+}
+/* Remove checkbox appearance */
+.toggle-switch__checkbox {
+  height: 0;
+  width: 0;
+  visibility: hidden;
+  position: absolute;
+}
+/* Circle */
+.toggle-switch .toggle-switch__slider {
+  position: absolute;
+  width: 29px;
+  height: 29px;
+  border-radius: 20px;
+  transition: 0.2s;
+  background: black;
+  box-shadow: 0 0 2px 0 rgba(10, 10, 10, 0.29);
+}
+/* Moving funct. */
+.toggle-switch__checkbox:checked + .toggle-switch__slider {
+  left: -1px;
+  transform: translate(28px);
+}
+/* Move slider circle up */
+.toggle-switch__slider {
+  top: -1px;
+  z-index: 0;
+}
+.toggle-switch__labels {
+  display: relative;
+  z-index: 2;
+  font-size: 14px;
+  height: 100%;
+  color: #7e7e7e;
+}
+/* Positions letter center */
+.toggle-switch__labels span {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50%;
+  height: 100%;
+}
+/* Evenly space letters */
+.toggle-switch__labels span:last-child {
+  right: 0;
+}
+.toggle-switch__labels span:first-child {
+  left: 0;
+}
