@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Switch, Route } from "react-router-dom";
 import "./App.css";
 import Header from "../Header/Header";
 import Main from "../Main/Main";
@@ -14,6 +15,8 @@ import { defaultClothingItems } from "../../utils/clothingItems";
 import ItemModal from "../ItemModal/ItemModal";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import NewClothingForm from "../../components/ModalWithForm/NewClothingForm";
+import Profile from "../Profile/Profile";
+
 import CurrentTemperatureUnitContext from "../../contexts/CurrentTemperatureUnitContext";
 
 const App = () => {
@@ -76,11 +79,18 @@ const App = () => {
               setActiveModal(MODAL_TYPE.ADD);
             }}
           />
-          <Main
-            weatherData={weatherData}
-            cards={defaultClothingItems}
-            cardClick={handleClick}
-          />
+          <Switch>
+            <Route path="/profile">
+              <Profile />
+            </Route>
+            <Route path="/">
+              <Main
+                weatherData={weatherData}
+                cards={defaultClothingItems}
+                cardClick={handleClick}
+              />
+            </Route>
+          </Switch>
           <Footer />
         </div>
 
