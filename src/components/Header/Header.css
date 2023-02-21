@@ -1,8 +1,13 @@
 @font-face {
   font-family: "Cabinet Grotesk";
   src: url("../../fonts/CabinetGrotesk-Regular.otf");
+  /* Should i put a format name for openType*/
 }
-/* Should i put a format name for openType*/
+
+.navigation__header-user {
+  text-decoration: none;
+  color: black;
+}
 .header {
   display: flex;
   align-items: center;
@@ -57,6 +62,9 @@
   font-size: 20px;
   font-weight: 700;
   line-height: 25px;
+}
+.navigation__user-info:hover {
+  cursor: pointer;
 }
 .navigation__avatar {
   width: 40x;

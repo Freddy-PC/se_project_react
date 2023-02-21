@@ -3,6 +3,7 @@ import "./Header.css";
 import logoImage from "../../images/logo.png";
 import avatarImage from "../../images/avatar-image.png";
 import ToggleSwitch from "../ToggleSwitch/ToggleSwitch";
+import { NavLink } from "react-router-dom";
 
 const Header = ({ weatherData, addModalClick }) => {
   if (!weatherData) return null;
@@ -14,7 +15,9 @@ const Header = ({ weatherData, addModalClick }) => {
   return (
     <header className="header">
       <div className="header__container">
-        <img src={logoImage} alt="Weather Logo" className="header__logo" />
+        <NavLink to="/">
+          <img src={logoImage} alt="Weather Logo" className="header__logo" />
+        </NavLink>
         <p className="header__info">
           {currentDate}, {weatherData.city}
         </p>
@@ -28,14 +31,16 @@ const Header = ({ weatherData, addModalClick }) => {
             </button>
           </li>
           <li>
-            <p className="navigation__user-info">
-              Terrence Tegegne
-              <img
-                className="navigation__avatar"
-                src={avatarImage}
-                alt="user avatar"
-              />
-            </p>
+            <NavLink to="/profile" className="navigation__header-user">
+              <p className="navigation__user-info">
+                Terrence Tegegne
+                <img
+                  className="navigation__avatar"
+                  src={avatarImage}
+                  alt="user avatar"
+                />
+              </p>
+            </NavLink>
           </li>
         </ul>
       </div>
