@@ -14,13 +14,13 @@ const setDataFromWeatherApi = (data) => {
   if (!data) {
     return null;
   }
-  // Weather will return properties:
+  // Weather will return properties set equal to server properties:
   const weather = {};
   weather.city = data.name;
   weather.condition = data.weather.main;
   weather.temperature = data.main.temp;
-  weather.temperature.F = `${Math.round(data.main.temp)}°F`;
-  weather.temperature.C = `${Math.round(((data.main.temp - 32) * 5) / 9)}°C`;
+  weather.temperatureF = `${Math.round(data.main.temp)}°F`;
+  weather.temperatureC = `${Math.round(((data.main.temp - 32) * 5) / 9)}°C`;
 
   return weather;
 };
