@@ -4,11 +4,15 @@ import SideBar from "./Sidebar/SideBar";
 import ClothesSection from "./ClothesSection/ClothesSection";
 
 /* Include components 'sidebar' and  'ClothesSection' */
-function Profile({ cards, cardClick }) {
+function Profile({ cards, cardClick, addModalClick }) {
   return (
     <div className="profile__container">
       <SideBar />
-      <ClothesSection cards={cards} cardClick={cardClick} />
+      <ClothesSection
+        cards={cards}
+        cardClick={cardClick}
+        addModalClick={addModalClick}
+      />
     </div>
   );
 }

@@ -18,6 +18,7 @@ import NewClothingForm from "../../components/ModalWithForm/NewClothingForm";
 import Profile from "../Profile/Profile";
 
 import CurrentTemperatureUnitContext from "../../contexts/CurrentTemperatureUnitContext";
+import AddItemModal from "../AddItemModal/AddItemModal";
 
 const App = () => {
   const [weatherData, setWeatherData] = useState({});
@@ -65,6 +66,9 @@ const App = () => {
     }
   }, []); // Only called once to prevent Error: 429
 
+  // Handler for adding data from Add Modal
+  const handleAddItemSubmit = (name, link, weather) => {};
+
   /* Should 'CurrentTemperatureUnitContext' only wrap around Header and Main
      since other components and settings dont need it */
   return (
@@ -81,7 +85,13 @@ const App = () => {
           />
           <Switch>
             <Route path="/profile">
-              <Profile cards={defaultClothingItems} cardClick={handleClick} />
+              <Profile
+                cards={defaultClothingItems}
+                cardClick={handleClick}
+                addModalClick={() => {
+                  setActiveModal(MODAL_TYPE.ADD);
+                }}
+              />
             </Route>
             <Route path="/">
               <Main
@@ -95,13 +105,10 @@ const App = () => {
         </div>
 
         {activeModal === MODAL_TYPE.ADD && (
-          <ModalWithForm
-            title="New garment"
-            buttonText="Add garment"
+          <AddItemModal
+            onAddItem={handleAddItemSubmit}
             onClose={closeAllModals}
-          >
-            <NewClothingForm />
-          </ModalWithForm>
+          />
         )}
         {activeModal === MODAL_TYPE.PREVIEW && (
           <ItemModal card={selectedCard} onClose={closeAllModals} />

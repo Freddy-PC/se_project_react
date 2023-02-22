@@ -1,4 +1,4 @@
-function NewClothingForm() {
+function NewClothingForm({ onNameChange, onImageChange, onWeatherChange }) {
   return (
     <>
       <h3 className="form__heading">Name</h3>
@@ -9,6 +9,7 @@ function NewClothingForm() {
         placeholder="Name"
         id="new-name"
         required
+        onChange={onNameChange}
       />
       <h3 className="form__heading">Image</h3>
       <input
@@ -18,6 +19,7 @@ function NewClothingForm() {
         placeholder="Image URL"
         id="new-image"
         required
+        onChange={onImageChange}
       />
       <h3 className="form__heading">Select the Weather type:</h3>
       <div className="form__radio-container">
@@ -27,6 +29,7 @@ function NewClothingForm() {
             name="weather"
             type="radio"
             id="Hot"
+            onChange={onWeatherChange}
           />
           <label className="form__radio-label" for="Hot">
             Hot
@@ -38,6 +41,7 @@ function NewClothingForm() {
             name="weather"
             type="radio"
             id="Warm"
+            onChange={onWeatherChange}
           />
           <label className="form__radio-label" for="Warm">
             Warm
@@ -49,6 +53,7 @@ function NewClothingForm() {
             name="weather"
             type="radio"
             id="Cold"
+            onChange={onWeatherChange}
           />
           <label className="form__radio-label" for="Cold">
             Cold
