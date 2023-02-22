@@ -81,7 +81,7 @@ const App = () => {
           />
           <Switch>
             <Route path="/profile">
-              <Profile />
+              <Profile cards={defaultClothingItems} cardClick={handleClick} />
             </Route>
             <Route path="/">
               <Main
