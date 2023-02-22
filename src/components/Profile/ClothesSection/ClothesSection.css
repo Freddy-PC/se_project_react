@@ -3,8 +3,8 @@
   src: url("../../../fonts/CabinetGrotesk-Regular.otf");
 }
 
-.clothes {
-}
+/* .clothes {
+} */
 .clothes__header {
   display: flex;
 }
