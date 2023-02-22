@@ -1,3 +1,4 @@
 .profile__container {
   margin: 47px 0 80px 0;
+  display: flex;
 }

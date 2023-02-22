@@ -1,5 +1,6 @@
 import React from "react";
-import "./ClothesSection.js";
+import "./ClothesSection.css";
+import ItemCard from "../../ItemCard/ItemCard.js";
 
 function ClothesSection({ cards, cardClick }) {
   return (
@@ -8,7 +9,11 @@ function ClothesSection({ cards, cardClick }) {
         <p className="clothes__title">Your items</p>
         <button className="clothes__add-button">+Add new</button>
       </div>
-      <ul className="clothes__items"></ul>
+      <ul className="clothes__items">
+        {cards.map((card) => (
+          <ItemCard clothing={card} key={card._id} cardClick={cardClick} />
+        ))}
+      </ul>
     </div>
   );
 }

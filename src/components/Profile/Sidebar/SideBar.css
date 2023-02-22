@@ -1,9 +1,9 @@
 @font-face {
   font-family: "Cabinet Grotesk";
   src: url("../../../fonts/CabinetGrotesk-Regular.otf");
-  /* Should i put a format name for openType*/
 }
 .sidebar__container {
+  margin-right: 116px;
 }
 .sidebar__info {
   display: flex;
