@@ -1,0 +1,21 @@
+@font-face {
+  font-family: "Cabinet Grotesk";
+  src: url("../../../fonts/CabinetGrotesk-Regular.otf");
+  /* Should i put a format name for openType*/
+}
+.sidebar__container {
+}
+.sidebar__info {
+  display: flex;
+}
+.sidebar__avatar {
+  width: 56px;
+  height: 56px;
+  margin-right: 16px;
+}
+.sidebar__name {
+  font-family: "Cabinet Grotesk", "Arial", sans-serif;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 25px;
+}
