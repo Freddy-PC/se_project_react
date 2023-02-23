@@ -13,18 +13,18 @@ import {
 import { getWeather, setDataFromWeatherApi } from "../../utils/weatherApi";
 import { defaultClothingItems } from "../../utils/clothingItems";
 import ItemModal from "../ItemModal/ItemModal";
-import ModalWithForm from "../ModalWithForm/ModalWithForm";
-import NewClothingForm from "../../components/ModalWithForm/NewClothingForm";
 import Profile from "../Profile/Profile";
 
 import CurrentTemperatureUnitContext from "../../contexts/CurrentTemperatureUnitContext";
 import AddItemModal from "../AddItemModal/AddItemModal";
+import { getItems, addItems, deleteItems } from "../../utils/api";
 
 const App = () => {
   const [weatherData, setWeatherData] = useState({});
   const [activeModal, setActiveModal] = useState("");
   const [selectedCard, setSelectedCard] = useState({});
   const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState("F");
+  const [clothingItems, setClothingItems] = useState([]);
 
   // Handle changing temp unit
   const handleToggleSwitchChange = () => {
@@ -66,8 +66,24 @@ const App = () => {
     }
   }, []); // Only called once to prevent Error: 429
 
-  // Handler for adding data from Add Modal
-  const handleAddItemSubmit = (name, link, weather) => {};
+  //
+  useEffect(() => {
+    getItems()
+      .then((items) => {
+        setClothingItems(items);
+      })
+      .catch((err) => console.log(err));
+  }, []);
+
+  // Handler updates clothingItems state with array
+  const handleAddItemSubmit = (name, link, weather) => {
+    getItems(name, link, weather)
+      .then((item) => {
+        setClothingItems([item, ...clothingItems]);
+        closeAllModals();
+      })
+      .catch((err) => console.log(err));
+  };
 
   /* Should 'CurrentTemperatureUnitContext' only wrap around Header and Main
      since other components and settings dont need it */
@@ -86,7 +102,7 @@ const App = () => {
           <Switch>
             <Route path="/profile">
               <Profile
-                cards={defaultClothingItems}
+                cards={clothingItems} // Update with clothinItems???
                 cardClick={handleClick}
                 addModalClick={() => {
                   setActiveModal(MODAL_TYPE.ADD);
@@ -96,7 +112,7 @@ const App = () => {
             <Route path="/">
               <Main
                 weatherData={weatherData}
-                cards={defaultClothingItems}
+                cards={clothingItems}
                 cardClick={handleClick}
               />
             </Route>
