@@ -37,10 +37,10 @@ function Main({ weatherData, cards, cardClick }) {
       <ul className="main__items">
         {cards
           .filter((card) => card.weather === weatherType())
-          .map((filteredCard) => (
+          .map((filteredCard, index) => (
             <ItemCard
               clothing={filteredCard}
-              key={filteredCard._id}
+              key={index}
               cardClick={cardClick}
             />
           ))}

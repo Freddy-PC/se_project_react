@@ -12,8 +12,8 @@ function ClothesSection({ cards, cardClick, addModalClick }) {
         </button>
       </div>
       <ul className="clothes__items">
-        {cards.map((card) => (
-          <ItemCard clothing={card} key={card._id} cardClick={cardClick} />
+        {cards.map((card, index) => (
+          <ItemCard clothing={card} key={index} cardClick={cardClick} />
         ))}
       </ul>
     </div>

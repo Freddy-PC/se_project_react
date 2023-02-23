@@ -1,5 +1,6 @@
 import "./ItemCard.css";
 
+// Clothing values from db.json
 function ItemCard({ clothing, cardClick }) {
   return (
     // List of cards
@@ -12,7 +13,7 @@ function ItemCard({ clothing, cardClick }) {
             cardClick(clothing);
           }}
           className="card__image"
-          src={clothing.link}
+          src={clothing.imageUrl}
           alt={clothing.name}
         />
       </div>

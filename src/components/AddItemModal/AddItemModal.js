@@ -39,6 +39,7 @@ const AddItemModal = ({ isOpen, onAddItem, onClose }) => {
       title="New garment"
       buttonText="Add garment"
       onClose={onClose}
+      handleSubmit={handleSubmit}
     >
       <NewClothingForm
         onNameChange={handleName}
