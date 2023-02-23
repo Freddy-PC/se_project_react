@@ -90,6 +90,7 @@ const App = () => {
       .then((item) => {
         setClothingItems([item, ...clothingItems]);
         closeAllModals();
+        console.log(item);
       })
       .catch((err) => console.log(err));
   };
@@ -106,7 +107,6 @@ const App = () => {
             weatherData={weatherData}
             addModalClick={() => {
               setActiveModal(MODAL_TYPE.ADD);
-              // Add handleAddItemSubmit? Same as in AddItemModal??
             }}
           />
           <Switch>
@@ -124,6 +124,9 @@ const App = () => {
                 weatherData={weatherData}
                 cards={clothingItems}
                 cardClick={handleClick}
+                // Why are cards not being added here?
+                /* The 'filter' method doesn't allow
+                   new cards to filter..why? */
               />
             </Route>
           </Switch>
