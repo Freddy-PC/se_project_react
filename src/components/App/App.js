@@ -66,7 +66,7 @@ const App = () => {
     }
   }, []); // Only called once to prevent Error: 429
 
-  //
+  // Get cards
   useEffect(() => {
     getItems()
       .then((items) => {
@@ -75,12 +75,22 @@ const App = () => {
       .catch((err) => console.log(err));
   }, []);
 
+  // // Delete cards
+  // useEffect(() => {
+  //   deleteItems()
+  //     .then((items) => {
+  //       setClothingItems(items);
+  //     })
+  //     .catch((err) => console.log(err));
+  // }, []);
+
   // Handler updates clothingItems state with array
   const handleAddItemSubmit = (name, link, weather) => {
-    getItems(name, link, weather)
+    addItems(name, link, weather)
       .then((item) => {
         setClothingItems([item, ...clothingItems]);
         closeAllModals();
+        console.log(weather);
       })
       .catch((err) => console.log(err));
   };
@@ -102,7 +112,7 @@ const App = () => {
           <Switch>
             <Route path="/profile">
               <Profile
-                cards={clothingItems} // Update with clothinItems???
+                cards={clothingItems}
                 cardClick={handleClick}
                 addModalClick={() => {
                   setActiveModal(MODAL_TYPE.ADD);

@@ -3,7 +3,7 @@ function NewClothingForm({ onNameChange, onImageChange, onWeatherChange }) {
     <>
       <h3 className="form__heading">Name</h3>
       <input
-        class="form__input form__input_type_name"
+        className="form__input form__input_type_name"
         name="name"
         type="text"
         placeholder="Name"
@@ -13,7 +13,7 @@ function NewClothingForm({ onNameChange, onImageChange, onWeatherChange }) {
       />
       <h3 className="form__heading">Image</h3>
       <input
-        class="form__input form__input_type_image"
+        className="form__input form__input_type_image"
         name="image"
         type="url"
         placeholder="Image URL"
@@ -25,37 +25,41 @@ function NewClothingForm({ onNameChange, onImageChange, onWeatherChange }) {
       <div className="form__radio-container">
         <div className="form__radio">
           <input
-            class="form__input_type_radio"
+            className="form__input_type_radio"
             name="weather"
             type="radio"
             id="Hot"
+            // Value = onChange
+            value="Hot"
             onChange={onWeatherChange}
           />
-          <label className="form__radio-label" for="Hot">
+          <label className="form__radio-label" htmlFor="Hot">
             Hot
           </label>
         </div>
         <div className="form__radio">
           <input
-            class="form__input_type_radio"
+            className="form__input_type_radio"
             name="weather"
             type="radio"
             id="Warm"
+            value="Warm"
             onChange={onWeatherChange}
           />
-          <label className="form__radio-label" for="Warm">
+          <label className="form__radio-label" htmlFor="Warm">
             Warm
           </label>
         </div>
         <div className="form__radio">
           <input
-            class="form__input_type_radio"
+            className="form__input_type_radio"
             name="weather"
             type="radio"
             id="Cold"
+            value="Cold"
             onChange={onWeatherChange}
           />
-          <label className="form__radio-label" for="Cold">
+          <label className="form__radio-label" htmlFor="Cold">
             Cold
           </label>
         </div>
