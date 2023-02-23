@@ -90,7 +90,6 @@ const App = () => {
       .then((item) => {
         setClothingItems([item, ...clothingItems]);
         closeAllModals();
-        console.log(weather);
       })
       .catch((err) => console.log(err));
   };
@@ -107,6 +106,7 @@ const App = () => {
             weatherData={weatherData}
             addModalClick={() => {
               setActiveModal(MODAL_TYPE.ADD);
+              // Add handleAddItemSubmit? Same as in AddItemModal??
             }}
           />
           <Switch>
