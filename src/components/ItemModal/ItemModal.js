@@ -15,8 +15,13 @@ function ItemModal({ card, onClose }) {
           alt={card.name}
           className="item-modal__image"
         />
-        <p className="item-modal__title">{card.name}</p>
-        <p className="item-modal__description">Weather: {card.weather}</p>
+        <div className="item-modal__info">
+          <div className="item-modal__description">
+            <p className="item-modal__title">{card.name}</p>
+            <p className="item-modal__weather">Weather: {card.weather}</p>
+          </div>
+          <button className="item-modal__delete-button">Delete item</button>
+        </div>
       </div>
     </div>
   );

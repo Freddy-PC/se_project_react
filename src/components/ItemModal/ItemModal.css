@@ -41,17 +41,35 @@
   border-top-right-radius: 16px;
   margin-bottom: 20px;
 }
-.item-modal__title {
+
+.item-modal__info {
   font-family: "Cabinet Grotesk", "Arial", sans-serif;
   font-size: 20px;
   font-weight: 700;
   line-height: 24px;
-  margin: 0 0 12px 32px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin: 0 32px 0 32px;
 }
-.item-modal__description {
+
+.item-modal__title {
+  margin: 0 0 12px 0;
+}
+.item-modal__weather {
+  margin: 0;
+}
+.item-modal__delete-button {
+  border: none;
+  background-color: white;
+  color: red;
   font-family: "Cabinet Grotesk", "Arial", sans-serif;
   font-size: 20px;
   font-weight: 700;
   line-height: 24px;
-  margin: 0 0 0 32px;
+}
+
+.item-modal__delete-button:hover {
+  opacity: 50%;
+  cursor: pointer;
 }

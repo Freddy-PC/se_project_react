@@ -43,6 +43,7 @@ const App = () => {
   const MODAL_TYPE = {
     ADD: "add", // + Add clothes button
     PREVIEW: "preview", // Clothing images
+    DELETE: "delete", // Delete card
   };
 
   /* How should I go about closing with the Escape Key
@@ -141,6 +142,9 @@ const App = () => {
         )}
         {activeModal === MODAL_TYPE.PREVIEW && (
           <ItemModal card={selectedCard} onClose={closeAllModals} />
+        )}
+        {activeModal === MODAL_TYPE.DELETE && (
+          <DeleteModal onClose={closeAllModals} />
         )}
       </CurrentTemperatureUnitContext.Provider>
     </div>
