@@ -1,0 +1,82 @@
+@font-face {
+  font-family: "Cabinet Grotesk";
+  src: url("../../fonts/CabinetGrotesk-Regular.otf");
+}
+
+.delete-modal {
+  z-index: 1;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.delete-modal__container {
+  background-color: white;
+  position: relative;
+  border-radius: 16px;
+  height: 280px;
+  width: 670px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.delete-modal__close-button {
+  background: transparent url(../../images/grey-close-button.svg) center
+    no-repeat;
+  border: none;
+  width: 14px;
+  height: 14px;
+  position: absolute;
+  right: 27px;
+  top: 27px;
+}
+.delete-modal__close-button:hover {
+  opacity: 50%;
+  cursor: pointer;
+}
+.delete-modal__info {
+  font-family: "Cabinet Grotesk", "Arial", sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.delete-modal__title {
+  max-width: 367px;
+  text-align: center;
+  margin: 0;
+}
+.delete-modal__delete-button {
+  border: none;
+  background-color: white;
+  color: red;
+  font-family: "Cabinet Grotesk", "Arial", sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 24px;
+  margin: 40px 0 24px 0;
+}
+.delete-modal__delete-button:hover {
+  opacity: 50%;
+  cursor: pointer;
+}
+.delete-modal__cancel-button {
+  border: none;
+  background-color: white;
+  color: black;
+  font-family: "Cabinet Grotesk", "Arial", sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 24px;
+}
+.delete-modal__cancel-button:hover {
+  opacity: 50%;
+  cursor: pointer;
+}

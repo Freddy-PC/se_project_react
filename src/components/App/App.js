@@ -17,6 +17,7 @@ import Profile from "../Profile/Profile";
 
 import CurrentTemperatureUnitContext from "../../contexts/CurrentTemperatureUnitContext";
 import AddItemModal from "../AddItemModal/AddItemModal";
+import DeleteConfirmModal from "../DeleteConfirmModal/DeleteConfirmModal";
 import { getItems, addItems, deleteItems } from "../../utils/api";
 
 const App = () => {
@@ -80,7 +81,8 @@ const App = () => {
   // useEffect(() => {
   //   deleteItems()
   //     .then((items) => {
-  //       setClothingItems(items);
+  //
+  //     closeAllModals();
   //     })
   //     .catch((err) => console.log(err));
   // }, []);
@@ -140,10 +142,23 @@ const App = () => {
           />
         )}
         {activeModal === MODAL_TYPE.PREVIEW && (
-          <ItemModal card={selectedCard} onClose={closeAllModals} />
+          <ItemModal
+            card={selectedCard}
+            onClose={closeAllModals}
+            handleDelete={() => {
+              setActiveModal(MODAL_TYPE.DELETE);
+            }}
+          />
         )}
         {activeModal === MODAL_TYPE.DELETE && (
-          <DeleteModal onClose={closeAllModals} />
+          <DeleteConfirmModal
+            onClose={closeAllModals}
+            handleCancel={() => {
+              setActiveModal(MODAL_TYPE.PREVIEW);
+            }}
+            // Makes Api call so clothingItems state is updated
+            // handleCardDelete={}
+          />
         )}
       </CurrentTemperatureUnitContext.Provider>
     </div>
