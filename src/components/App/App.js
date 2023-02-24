@@ -91,7 +91,6 @@ const App = () => {
       .then((item) => {
         setClothingItems([item, ...clothingItems]);
         closeAllModals();
-        console.log(item);
       })
       .catch((err) => console.log(err));
   };

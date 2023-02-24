@@ -23,6 +23,7 @@ function Main({ weatherData, cards, cardClick }) {
     }
   };
 
+  // toLowerCase weather value as some may be capitalized
   // If need to see all cards then comment weatherType and .filter
   return (
     <main className="main">
@@ -36,7 +37,7 @@ function Main({ weatherData, cards, cardClick }) {
       </h3>
       <ul className="main__items">
         {cards
-          .filter((card) => card.weather === weatherType())
+          .filter((card) => card.weather.toLowerCase() === weatherType())
           .map((filteredCard, index) => (
             <ItemCard
               clothing={filteredCard}

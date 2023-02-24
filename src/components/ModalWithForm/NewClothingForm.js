@@ -30,7 +30,7 @@ function NewClothingForm({ onNameChange, onImageChange, onWeatherChange }) {
             type="radio"
             id="Hot"
             // Value = onChange
-            value="Hot"
+            value="hot"
             onChange={onWeatherChange}
           />
           <label className="form__radio-label" htmlFor="Hot">
@@ -43,7 +43,7 @@ function NewClothingForm({ onNameChange, onImageChange, onWeatherChange }) {
             name="weather"
             type="radio"
             id="Warm"
-            value="Warm"
+            value="warm"
             onChange={onWeatherChange}
           />
           <label className="form__radio-label" htmlFor="Warm">
@@ -56,7 +56,7 @@ function NewClothingForm({ onNameChange, onImageChange, onWeatherChange }) {
             name="weather"
             type="radio"
             id="Cold"
-            value="Cold"
+            value="cold"
             onChange={onWeatherChange}
           />
           <label className="form__radio-label" htmlFor="Cold">
