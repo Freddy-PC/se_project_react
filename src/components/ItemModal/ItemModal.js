@@ -1,6 +1,6 @@
 import "./ItemModal.css";
 
-function ItemModal({ card, onClose }) {
+function ItemModal({ card, onClose, handleDelete }) {
   return (
     <div className="item-modal">
       <div className="item-modal__container">
@@ -20,7 +20,9 @@ function ItemModal({ card, onClose }) {
             <p className="item-modal__title">{card.name}</p>
             <p className="item-modal__weather">Weather: {card.weather}</p>
           </div>
-          <button className="item-modal__delete-button">Delete item</button>
+          <button className="item-modal__delete-button" onClick={handleDelete}>
+            Delete item
+          </button>
         </div>
       </div>
     </div>
