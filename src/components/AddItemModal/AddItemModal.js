@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import NewClothingForm from "../ModalWithForm/NewClothingForm";
 
@@ -46,6 +46,8 @@ const AddItemModal = ({ isOpen, onAddItem, onClose }) => {
         onNameChange={handleName}
         onImageChange={handleImageUrl}
         onWeatherChange={handleWeather}
+        name={name}
+        imageUrl={imageUrl}
       />
     </ModalWithForm>
   );

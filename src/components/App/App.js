@@ -138,9 +138,6 @@ const App = () => {
                 weatherData={weatherData}
                 cards={clothingItems}
                 cardClick={handleClick}
-                // Why are cards not being added here?
-                /* The 'filter' method doesn't allow
-                   new cards to filter..why? */
               />
             </Route>
           </Switch>

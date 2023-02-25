@@ -3,8 +3,9 @@ import ReactDOM from "react-dom/client";
 import "./index.css";
 import App from "./components/App/App"; // App.js
 import reportWebVitals from "./reportWebVitals";
-import { HashRouter, BrowserRouter } from "react-router-dom";
+import { HashRouter } from "react-router-dom";
 
+// Instead of BrowserRoyter comp...
 // HashRouter component allows depployment on GitHub to function
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
