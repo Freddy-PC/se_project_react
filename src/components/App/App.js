@@ -63,7 +63,7 @@ const App = () => {
     return () => window.removeEventListener("keydown", closebyEsc);
   }, []);
 
-  // Close modal when clicked outside
+  // Not sure hows to implement closing modal when clicked outside ????
 
   // Get data from weatherAPI
   useEffect(() => {
