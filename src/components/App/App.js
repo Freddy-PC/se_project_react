@@ -10,6 +10,7 @@ import {
   key,
   // weatherForecast,
 } from "../../utils/constants";
+// Suggest using createContext to change weatherCard?
 import { getWeather, setDataFromWeatherApi } from "../../utils/weatherApi";
 import ItemModal from "../ItemModal/ItemModal";
 import Profile from "../Profile/Profile";
