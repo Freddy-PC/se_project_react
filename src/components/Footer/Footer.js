@@ -2,11 +2,14 @@
 import "./Footer.css";
 
 function Footer() {
+  // Dynamically update year
+  const today = new Date();
+
   return (
-    <div className="footer">
+    <footer className="footer">
       <p className="footer__text">Developed by Freddy Perez-Camacho</p>
-      <p className="footer__text">2022</p>
-    </div>
+      <p className="footer__text">{today.getFullYear()}</p>
+    </footer>
   );
 }
 
