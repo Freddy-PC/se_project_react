@@ -77,15 +77,15 @@ const App = () => {
       .catch((err) => console.log(err));
   }, []);
 
-  // // Delete cards
-  // useEffect(() => {
-  //   deleteItems()
-  //     .then((items) => {
-  //
-  //     closeAllModals();
-  //     })
-  //     .catch((err) => console.log(err));
-  // }, []);
+  // Delete card vai id
+  const handleCardDelete = (card) => {
+    deleteItems(card.id)
+      .then(() => {
+        setClothingItems((cards) => cards.filter((c) => c.id !== card.id));
+        closeAllModals();
+      })
+      .catch((err) => console.log(err));
+  };
 
   // Handler updates clothingItems state with array
   const handleAddItemSubmit = (name, link, weather) => {
@@ -156,8 +156,11 @@ const App = () => {
             handleCancel={() => {
               setActiveModal(MODAL_TYPE.PREVIEW);
             }}
-            // Makes Api call so clothingItems state is updated
-            // handleCardDelete={}
+            /* Makes Api call so clothingItems state is updated 
+               via the 'selectedCard' */
+            handleCardDelete={() => {
+              handleCardDelete(selectedCard);
+            }}
           />
         )}
       </CurrentTemperatureUnitContext.Provider>
