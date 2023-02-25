@@ -97,6 +97,7 @@ const App = () => {
       .catch((err) => console.log(err));
   };
 
+  // Won't delete new cards???
   // Handler updates clothingItems state with array
   const handleAddItemSubmit = (name, link, weather) => {
     addItems(name, link, weather)
