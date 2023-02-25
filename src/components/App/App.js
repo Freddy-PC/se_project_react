@@ -11,7 +11,6 @@ import {
   // weatherForecast,
 } from "../../utils/constants";
 import { getWeather, setDataFromWeatherApi } from "../../utils/weatherApi";
-import { defaultClothingItems } from "../../utils/clothingItems";
 import ItemModal from "../ItemModal/ItemModal";
 import Profile from "../Profile/Profile";
 
@@ -47,13 +46,24 @@ const App = () => {
     DELETE: "delete", // Delete card
   };
 
-  /* How should I go about closing with the Escape Key
-     or pressing outside the modal ??? */
-
   // On Modal when button clicked not 'preview'
   const closeAllModals = () => {
     setActiveModal("");
   };
+
+  // Close on "Esc" key press anywhere
+  // Set variable equal to 'esc' key equal to closeAllModals
+  useEffect(() => {
+    const closebyEsc = (evt) => {
+      if (evt.key === "Escape") {
+        closeAllModals();
+      }
+    };
+    window.addEventListener("keydown", closebyEsc);
+    return () => window.removeEventListener("keydown", closebyEsc);
+  }, []);
+
+  // Close modal when clicked outside
 
   // Get data from weatherAPI
   useEffect(() => {
