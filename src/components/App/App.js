@@ -109,8 +109,6 @@ const App = () => {
       .catch((err) => console.log(err));
   };
 
-  /* Should 'CurrentTemperatureUnitContext' only wrap around Header and Main
-     since other components and settings dont need it */
   return (
     <div className="page">
       <CurrentTemperatureUnitContext.Provider
