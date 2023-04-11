@@ -1,3 +1,4 @@
+// Not sure hows to implement closing modal when clicked outside ????
 import React, { useState, useEffect } from "react";
 import { Switch, Route } from "react-router-dom";
 import "./App.css";
@@ -19,6 +20,9 @@ import CurrentTemperatureUnitContext from "../../contexts/CurrentTemperatureUnit
 import AddItemModal from "../AddItemModal/AddItemModal";
 import DeleteConfirmModal from "../DeleteConfirmModal/DeleteConfirmModal";
 import { getItems, addItems, deleteItems } from "../../utils/api";
+
+import RegisterModal from "../RegisterModal/RegisterModal";
+import LoginModal from "../LoginModal/LoginModal";
 
 const App = () => {
   const [weatherData, setWeatherData] = useState({});
@@ -45,6 +49,8 @@ const App = () => {
     ADD: "add", // + Add clothes button
     PREVIEW: "preview", // Clothing images
     DELETE: "delete", // Delete card
+    SIGNUP: "signup",
+    LOGIN: "login",
   };
 
   // On Modal when button clicked not 'preview'
@@ -53,7 +59,6 @@ const App = () => {
   };
 
   // Close on "Esc" key press anywhere
-  // Set variable equal to 'esc' key equal to closeAllModals
   useEffect(() => {
     const closebyEsc = (evt) => {
       if (evt.key === "Escape") {
@@ -63,8 +68,6 @@ const App = () => {
     window.addEventListener("keydown", closebyEsc);
     return () => window.removeEventListener("keydown", closebyEsc);
   }, []);
-
-  // Not sure hows to implement closing modal when clicked outside ????
 
   // Get data from weatherAPI
   useEffect(() => {
@@ -168,6 +171,18 @@ const App = () => {
             handleCardDelete={() => {
               handleCardDelete(selectedCard);
             }}
+          />
+        )}
+        {activeModal === MODAL_TYPE.SIGNUP && (
+          <RegisterModal
+            onClose={closeAllModals}
+            // onRegister={}
+          />
+        )}
+        {activeModal === MODAL_TYPE.LOGIN && (
+          <LoginModal
+            onClose={closeAllModals}
+            // onLogin={}
           />
         )}
       </CurrentTemperatureUnitContext.Provider>
