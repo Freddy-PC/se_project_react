@@ -42,7 +42,7 @@ const userAuthorize = async (email, password) => {
 
 // compare token validity with server
 const checkToken = async (token) => {
-  const res = await fetсh(`${baseUrl}/user/me`, {
+  const res = await fetch(`${baseUrl}/user/me`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",

@@ -24,6 +24,7 @@ import { getItems, addItems, deleteItems } from "../../utils/api";
 import auth from "../../utils/auth";
 import RegisterModal from "../RegisterModal/RegisterModal";
 import LoginModal from "../LoginModal/LoginModal";
+import CurrentUserContext from "../../contexts/CurrentUserContext";
 
 const App = () => {
   const [weatherData, setWeatherData] = useState({});
@@ -150,77 +151,79 @@ const App = () => {
   }
 
   return (
-    <div className="page">
-      <CurrentTemperatureUnitContext.Provider
-        value={{ currentTemperatureUnit, handleToggleSwitchChange }}
-      >
-        <div className="page__container">
-          <Header
-            weatherData={weatherData}
-            addModalClick={() => {
-              setActiveModal(MODAL_TYPE.ADD);
-            }}
-          />
-          <Switch>
-            <Route path="/profile">
-              <Profile
-                cards={clothingItems}
-                cardClick={handleClick}
-                addModalClick={() => {
-                  setActiveModal(MODAL_TYPE.ADD);
-                }}
-              />
-            </Route>
-            <Route path="/">
-              <Main
-                weatherData={weatherData}
-                cards={clothingItems}
-                cardClick={handleClick}
-              />
-            </Route>
-          </Switch>
-          <Footer />
-        </div>
+    <CurrentUserContext.Provider value={currentUser}>
+      <div className="page">
+        <CurrentTemperatureUnitContext.Provider
+          value={{ currentTemperatureUnit, handleToggleSwitchChange }}
+        >
+          <div className="page__container">
+            <Header
+              weatherData={weatherData}
+              addModalClick={() => {
+                setActiveModal(MODAL_TYPE.ADD);
+              }}
+            />
+            <Switch>
+              <Route path="/profile">
+                <Profile
+                  cards={clothingItems}
+                  cardClick={handleClick}
+                  addModalClick={() => {
+                    setActiveModal(MODAL_TYPE.ADD);
+                  }}
+                />
+              </Route>
+              <Route path="/">
+                <Main
+                  weatherData={weatherData}
+                  cards={clothingItems}
+                  cardClick={handleClick}
+                />
+              </Route>
+            </Switch>
+            <Footer />
+          </div>
 
-        {activeModal === MODAL_TYPE.ADD && (
-          <AddItemModal
-            onAddItem={handleAddItemSubmit}
-            onClose={closeAllModals}
-          />
-        )}
-        {activeModal === MODAL_TYPE.PREVIEW && (
-          <ItemModal
-            card={selectedCard}
-            onClose={closeAllModals}
-            handleDelete={() => {
-              setActiveModal(MODAL_TYPE.DELETE);
-            }}
-          />
-        )}
-        {activeModal === MODAL_TYPE.DELETE && (
-          <DeleteConfirmModal
-            onClose={closeAllModals}
-            handleCancel={() => {
-              setActiveModal(MODAL_TYPE.PREVIEW);
-            }}
-            /* Makes Api call so clothingItems state is updated 
+          {activeModal === MODAL_TYPE.ADD && (
+            <AddItemModal
+              onAddItem={handleAddItemSubmit}
+              onClose={closeAllModals}
+            />
+          )}
+          {activeModal === MODAL_TYPE.PREVIEW && (
+            <ItemModal
+              card={selectedCard}
+              onClose={closeAllModals}
+              handleDelete={() => {
+                setActiveModal(MODAL_TYPE.DELETE);
+              }}
+            />
+          )}
+          {activeModal === MODAL_TYPE.DELETE && (
+            <DeleteConfirmModal
+              onClose={closeAllModals}
+              handleCancel={() => {
+                setActiveModal(MODAL_TYPE.PREVIEW);
+              }}
+              /* Makes Api call so clothingItems state is updated 
                via the 'selectedCard' */
-            handleCardDelete={() => {
-              handleCardDelete(selectedCard);
-            }}
-          />
-        )}
-        {activeModal === MODAL_TYPE.SIGNUP && (
-          <RegisterModal
-            onClose={closeAllModals}
-            handleRegister={handleRegister}
-          />
-        )}
-        {activeModal === MODAL_TYPE.LOGIN && (
-          <LoginModal onClose={closeAllModals} handleSignin={handleSignin} />
-        )}
-      </CurrentTemperatureUnitContext.Provider>
-    </div>
+              handleCardDelete={() => {
+                handleCardDelete(selectedCard);
+              }}
+            />
+          )}
+          {activeModal === MODAL_TYPE.SIGNUP && (
+            <RegisterModal
+              onClose={closeAllModals}
+              handleRegister={handleRegister}
+            />
+          )}
+          {activeModal === MODAL_TYPE.LOGIN && (
+            <LoginModal onClose={closeAllModals} handleSignin={handleSignin} />
+          )}
+        </CurrentTemperatureUnitContext.Provider>
+      </div>
+    </CurrentUserContext.Provider>
   );
 };
 
