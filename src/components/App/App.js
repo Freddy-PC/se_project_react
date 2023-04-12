@@ -21,6 +21,7 @@ import AddItemModal from "../AddItemModal/AddItemModal";
 import DeleteConfirmModal from "../DeleteConfirmModal/DeleteConfirmModal";
 import { getItems, addItems, deleteItems } from "../../utils/api";
 
+import auth from "../../utils/auth";
 import RegisterModal from "../RegisterModal/RegisterModal";
 import LoginModal from "../LoginModal/LoginModal";
 
@@ -30,6 +31,9 @@ const App = () => {
   const [selectedCard, setSelectedCard] = useState({});
   const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState("F");
   const [clothingItems, setClothingItems] = useState([]);
+
+  const [isLoggedIn, setIsLoggedIn] = useState(false); // Handle logged status
+  const [currentUser, setCurrentUser] = useState(null); // No user at start
 
   // Handle changing temp unit
   const handleToggleSwitchChange = () => {
@@ -112,6 +116,39 @@ const App = () => {
       .catch((err) => console.log(err));
   };
 
+  // Handler for signup: close modal & redirect to sign in
+  function handleRegister(name, avatar, email, password) {
+    auth
+      .userRegister(name, avatar, email, password)
+      .then(() => {
+        closeAllModals();
+        setActiveModal(MODAL_TYPE.LOGIN);
+      })
+      .catch((err) => console.log(err));
+  }
+
+  // Handler for signin: check localstorage & close modal
+  // login success = check server gave access in response & add to localStorage
+  function handleSignin(email, password) {
+    auth
+      .userAuthorize(email, password)
+      .then((res) => {
+        // check token
+        localStorage.setItem("jwt", res.token);
+        const token = localStorage.getItem("jwt");
+        auth
+          .checkToken(token)
+          .then((res) => {
+            // logged in will be true & res = user
+            setIsLoggedIn(true);
+            setCurrentUser(res);
+          })
+          .catch((err) => console.log(err));
+        // closeAllModals();
+      })
+      .catch((err) => console.log(err));
+  }
+
   return (
     <div className="page">
       <CurrentTemperatureUnitContext.Provider
@@ -176,14 +213,11 @@ const App = () => {
         {activeModal === MODAL_TYPE.SIGNUP && (
           <RegisterModal
             onClose={closeAllModals}
-            // onRegister={}
+            handleRegister={handleRegister}
           />
         )}
         {activeModal === MODAL_TYPE.LOGIN && (
-          <LoginModal
-            onClose={closeAllModals}
-            // onLogin={}
-          />
+          <LoginModal onClose={closeAllModals} handleSignin={handleSignin} />
         )}
       </CurrentTemperatureUnitContext.Provider>
     </div>

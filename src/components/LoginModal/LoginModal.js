@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import "../ModalWithForm/ModalWithForm.js";
 
-const LoginModal = ({ onClose }) => {
+const LoginModal = ({ onClose, handleSignin }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
@@ -15,14 +15,13 @@ const LoginModal = ({ onClose }) => {
     setPassword(evt.target.value);
   };
 
-  // Needs ModalWithForm to handle data
   return (
     <>
       <ModalWithForm
         title="Log in"
         buttonText="Log in"
         onClose={onClose}
-        // handleSubmit={handleSubmit}
+        handleSubmit={handleSignin}
       >
         <label className="form__heading">Email</label>
         <input

@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import "../ModalWithForm/ModalWithForm.js";
 
-const RegisterModal = ({ onClose }) => {
+const RegisterModal = ({ onClose, handleRegister }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [username, setUsername] = useState("");
@@ -22,14 +22,13 @@ const RegisterModal = ({ onClose }) => {
     setAvatar(evt.target.value);
   };
 
-  // Needs ModalWithForm to handle data
   return (
     <>
       <ModalWithForm
         title="Sign up"
         buttonText="Sign up"
         onClose={onClose}
-        // handleSubmit={handleSubmit}
+        handleSubmit={handleRegister}
       >
         <label className="form__heading">Email</label>
         <input

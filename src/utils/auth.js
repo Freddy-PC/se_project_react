@@ -40,4 +40,18 @@ const userAuthorize = async (email, password) => {
   // .catch() handled in app.js
 };
 
-export { userRegister, userAuthorize };
+// compare token validity with server
+const checkToken = async (token) => {
+  const res = await fetсh(`${baseUrl}/user/me`, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      authorization: `Bearer ${token}`,
+    },
+  });
+  return processServerResponse(res);
+};
+
+// Make use more apparent
+const auth = { userRegister, userAuthorize, checkToken };
+export default auth;
