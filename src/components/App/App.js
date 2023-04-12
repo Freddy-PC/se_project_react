@@ -36,6 +36,10 @@ const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false); // Handle logged status
   const [currentUser, setCurrentUser] = useState(null); // No user at start
 
+  // Would it be more optimal to make something like this for the header?
+  // handleRegisterClick={handleRegisterClick}
+  // const handleRegisterClick = () => setActiveModal(MODAL_TYPE.SIGNUP);
+
   // Handle changing temp unit
   const handleToggleSwitchChange = () => {
     currentTemperatureUnit === "F"
@@ -161,6 +165,13 @@ const App = () => {
               weatherData={weatherData}
               addModalClick={() => {
                 setActiveModal(MODAL_TYPE.ADD);
+              }}
+              isLoggedIn={isLoggedIn}
+              handleRegisterClick={() => {
+                setActiveModal(MODAL_TYPE.SIGNUP);
+              }}
+              handleLoginClick={() => {
+                setActiveModal(MODAL_TYPE.LOGIN);
               }}
             />
             <Switch>

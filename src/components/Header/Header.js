@@ -5,13 +5,20 @@ import avatarImage from "../../images/avatar-image.png";
 import ToggleSwitch from "../ToggleSwitch/ToggleSwitch";
 import { NavLink } from "react-router-dom";
 
-const Header = ({ weatherData, addModalClick }) => {
+const Header = ({
+  weatherData,
+  addModalClick,
+  isLoggedIn,
+  handleRegisterClick,
+  handleLoginClick,
+}) => {
   if (!weatherData) return null;
   const currentDate = new Date().toLocaleString("default", {
     month: "long",
     day: "numeric",
   });
 
+  // If logged in shows profile...if not shows sign up & sign in
   return (
     <header className="header">
       <div className="header__container">
@@ -25,23 +32,44 @@ const Header = ({ weatherData, addModalClick }) => {
       <div className="header__nav">
         <ul className="navigation__container">
           <ToggleSwitch />
-          <li>
-            <button className="navigation__button" onClick={addModalClick}>
-              + Add clothes
-            </button>
-          </li>
-          <li>
-            <NavLink to="/profile" className="navigation__header-user">
-              <p className="navigation__user-info">
-                Terrence Tegegne
-                <img
-                  className="navigation__avatar"
-                  src={avatarImage}
-                  alt="user avatar"
-                />
-              </p>
-            </NavLink>
-          </li>
+          {isLoggedIn ? (
+            <>
+              <li>
+                <button className="navigation__button" onClick={addModalClick}>
+                  + Add clothes
+                </button>
+              </li>
+              <li>
+                <NavLink to="/profile" className="navigation__header-user">
+                  <p className="navigation__user-info">
+                    Terrence Tegegne
+                    <img
+                      className="navigation__avatar"
+                      src={avatarImage}
+                      alt="user avatar"
+                    />
+                  </p>
+                </NavLink>
+              </li>
+            </>
+          ) : (
+            <>
+              <button
+                className="nav__register"
+                type="button"
+                onClick={handleRegisterClick}
+              >
+                Sign up
+              </button>
+              <button
+                className="nav__login"
+                type="button"
+                onClick={handleLoginClick}
+              >
+                Log in
+              </button>
+            </>
+          )}
         </ul>
       </div>
     </header>
