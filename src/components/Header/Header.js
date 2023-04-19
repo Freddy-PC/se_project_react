@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
 import "./Header.css";
 import logoImage from "../../images/logo.png";
 import avatarImage from "../../images/avatar-image.png";
 import ToggleSwitch from "../ToggleSwitch/ToggleSwitch";
 import { NavLink } from "react-router-dom";
+import CurrentUserContext from "../../contexts/CurrentUserContext";
 
 const Header = ({
   weatherData,
@@ -12,7 +13,13 @@ const Header = ({
   handleRegisterClick,
   handleLoginClick,
 }) => {
+  const currentUser = useContext(CurrentUserContext);
+  // const username = currentUser.data.name;
+  // console.log(username);
+  // {username} where NAME HERE is???
+
   if (!weatherData) return null;
+
   const currentDate = new Date().toLocaleString("default", {
     month: "long",
     day: "numeric",
@@ -42,7 +49,7 @@ const Header = ({
               <li>
                 <NavLink to="/profile" className="navigation__header-user">
                   <p className="navigation__user-info">
-                    Terrence Tegegne
+                    {currentUser.name}
                     <img
                       className="navigation__avatar"
                       src={avatarImage}

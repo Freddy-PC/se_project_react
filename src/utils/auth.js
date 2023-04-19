@@ -1,5 +1,4 @@
-const baseUrl =
-  "https://my-json-server.typicode.com/Freddy-PC/se_project_react";
+const baseUrl = "http://localhost:3001";
 const headers = { "Content-Type": "application/json" };
 
 const processServerResponse = (res) => {

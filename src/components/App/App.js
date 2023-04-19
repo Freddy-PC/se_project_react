@@ -149,10 +149,23 @@ const App = () => {
             setCurrentUser(res);
           })
           .catch((err) => console.log(err));
-        // closeAllModals();
+        closeAllModals();
       })
       .catch((err) => console.log(err));
   }
+
+  // Check JWT when mounting app
+  useEffect(() => {
+    const token = localStorage.getItem("jwt");
+    auth
+      .checkToken(token)
+      .then((res) => {
+        // logged in will be true & res = user
+        setIsLoggedIn(true);
+        setCurrentUser(res);
+      })
+      .catch((err) => console.log(err));
+  }, []);
 
   return (
     <CurrentUserContext.Provider value={currentUser}>
