@@ -1,10 +1,10 @@
 import React, { useContext } from "react";
 import "./Header.css";
 import logoImage from "../../images/logo.png";
-import avatarImage from "../../images/avatar-image.png";
+// import avatarImage from "../../images/avatar-image.png";
 import ToggleSwitch from "../ToggleSwitch/ToggleSwitch";
 import { NavLink } from "react-router-dom";
-import CurrentUserContext from "../../contexts/CurrentUserContext";
+import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 
 const Header = ({
   weatherData,
@@ -15,7 +15,7 @@ const Header = ({
 }) => {
   const currentUser = useContext(CurrentUserContext);
   // const username = currentUser.data.name;
-  // console.log(username);
+  console.log(currentUser.name);
   // {username} where NAME HERE is???
 
   if (!weatherData) return null;
@@ -52,7 +52,7 @@ const Header = ({
                     {currentUser.name}
                     <img
                       className="navigation__avatar"
-                      src={avatarImage}
+                      src={currentUser.avatar}
                       alt="user avatar"
                     />
                   </p>

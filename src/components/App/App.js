@@ -24,7 +24,7 @@ import { getItems, addItems, deleteItems } from "../../utils/api";
 import auth from "../../utils/auth";
 import RegisterModal from "../RegisterModal/RegisterModal";
 import LoginModal from "../LoginModal/LoginModal";
-import CurrentUserContext from "../../contexts/CurrentUserContext";
+import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 
 const App = () => {
   const [weatherData, setWeatherData] = useState({});
@@ -34,7 +34,7 @@ const App = () => {
   const [clothingItems, setClothingItems] = useState([]);
 
   const [isLoggedIn, setIsLoggedIn] = useState(false); // Handle logged status
-  const [currentUser, setCurrentUser] = useState(null); // No user at start
+  const [currentUser, setCurrentUser] = useState({}); // No user at start
 
   // Would it be more optimal to make something like this for the header?
   // handleRegisterClick={handleRegisterClick}
@@ -225,7 +225,7 @@ const App = () => {
               handleCancel={() => {
                 setActiveModal(MODAL_TYPE.PREVIEW);
               }}
-              /* Makes Api call so clothingItems state is updated 
+              /* Makes Api call so clothingItems state isLoggedIn updated 
                via the 'selectedCard' */
               handleCardDelete={() => {
                 handleCardDelete(selectedCard);
