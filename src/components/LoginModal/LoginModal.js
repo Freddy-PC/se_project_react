@@ -1,12 +1,12 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import "../ModalWithForm/ModalWithForm.js";
 
 const LoginModal = ({ onClose, handleSignin }) => {
+  const history = useHistory();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
 
   const handleEmail = (evt) => {
     setEmail(evt.target.value);
@@ -15,13 +15,19 @@ const LoginModal = ({ onClose, handleSignin }) => {
     setPassword(evt.target.value);
   };
 
+  function handleSubmit(e) {
+    e.preventDefault();
+    handleSignin({ email, password });
+    history.push("/profile");
+  }
+
   return (
     <>
       <ModalWithForm
         title="Log in"
         buttonText="Log in"
         onClose={onClose}
-        handleSubmit={handleSignin}
+        handleSubmit={handleSubmit}
       >
         <label className="form__heading">Email</label>
         <input

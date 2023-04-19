@@ -1,9 +1,10 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import "../ModalWithForm/ModalWithForm.js";
 
 const RegisterModal = ({ onClose, handleRegister }) => {
+  const history = useHistory();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [username, setUsername] = useState("");
@@ -22,13 +23,19 @@ const RegisterModal = ({ onClose, handleRegister }) => {
     setAvatar(evt.target.value);
   };
 
+  function handleSubmit(e) {
+    e.preventDefault();
+    handleRegister({ email, password, username, avatar });
+    history.push("/profile");
+  }
+
   return (
     <>
       <ModalWithForm
         title="Sign up"
         buttonText="Sign up"
         onClose={onClose}
-        handleSubmit={handleRegister}
+        handleSubmit={handleSubmit}
       >
         <label className="form__heading">Email</label>
         <input

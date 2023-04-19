@@ -121,34 +121,28 @@ const App = () => {
       .catch((err) => console.log(err));
   };
 
-  // Handler for signup: close modal & redirect to sign in
-  function handleRegister(name, avatar, email, password) {
+  // Handler for signup: close modal & automatically sign-in user
+  function handleRegister({ name, avatar, email, password }) {
     auth
       .userRegister(name, avatar, email, password)
-      .then(() => {
+      .then((res) => {
+        setIsLoggedIn(true);
+        setCurrentUser(res);
         closeAllModals();
-        setActiveModal(MODAL_TYPE.LOGIN);
+        console.log(res);
       })
       .catch((err) => console.log(err));
   }
 
-  // Handler for signin: check localstorage & close modal
+  // Handler for signin: check localstorage, close modal & sign-in user
   // login success = check server gave access in response & add to localStorage
-  function handleSignin(email, password) {
+  function handleSignin({ email, password }) {
     auth
       .userAuthorize(email, password)
       .then((res) => {
-        // check token
-        localStorage.setItem("jwt", res.token);
-        const token = localStorage.getItem("jwt");
-        auth
-          .checkToken(token)
-          .then((res) => {
-            // logged in will be true & res = user
-            setIsLoggedIn(true);
-            setCurrentUser(res);
-          })
-          .catch((err) => console.log(err));
+        // logged in will be true & res = user
+        setIsLoggedIn(true);
+        setCurrentUser(res);
         closeAllModals();
       })
       .catch((err) => console.log(err));
@@ -157,15 +151,17 @@ const App = () => {
   // Check JWT when mounting app
   useEffect(() => {
     const token = localStorage.getItem("jwt");
-    auth
-      .checkToken(token)
-      .then((res) => {
-        // logged in will be true & res = user
-        setIsLoggedIn(true);
-        setCurrentUser(res);
-      })
-      .catch((err) => console.log(err));
-  }, []);
+    if (token) {
+      auth
+        .getUser(token)
+        .then((res) => {
+          // logged in will be true & res = user
+          setIsLoggedIn(true);
+          setCurrentUser(res);
+        })
+        .catch((err) => console.log(err));
+    }
+  }, []); // Should this have a value...log
 
   return (
     <CurrentUserContext.Provider value={currentUser}>
@@ -236,6 +232,7 @@ const App = () => {
               }}
             />
           )}
+
           {activeModal === MODAL_TYPE.SIGNUP && (
             <RegisterModal
               onClose={closeAllModals}

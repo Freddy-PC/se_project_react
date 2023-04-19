@@ -25,7 +25,7 @@ const userRegister = async (name, avatar, email, password) => {
   // .catch() handled in app.js
 };
 
-// user authorization
+// user authorization + set token
 const userAuthorize = async (email, password) => {
   const res = await fetch(`${baseUrl}/signin`, {
     method: "POST",
@@ -34,23 +34,28 @@ const userAuthorize = async (email, password) => {
       email,
       password,
     }),
+  }).then((data) => {
+    if (data) {
+      localStorage.setItem("token", data.token);
+      return data;
+    }
   });
   return processServerResponse(res);
   // .catch() handled in app.js
 };
 
 // compare token validity with server
-const checkToken = async (token) => {
+const getUser = async () => {
   const res = await fetch(`${baseUrl}/user/me`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
-      authorization: `Bearer ${token}`,
+      authorization: `Bearer ${localStorage.getItem("token")}`,
     },
   });
   return processServerResponse(res);
 };
 
 // Make use more apparent
-const auth = { userRegister, userAuthorize, checkToken };
+const auth = { userRegister, userAuthorize, getUser };
 export default auth;
