@@ -130,7 +130,7 @@ const App = () => {
         setIsLoggedIn(true);
         setCurrentUser(res);
         closeAllModals();
-        console.log(res);
+        // console.log(res);
       })
       .catch((err) => console.log(err));
   }
@@ -160,9 +160,9 @@ const App = () => {
           setIsLoggedIn(true);
           setCurrentUser(res);
         })
-        .catch((err) => console.log(err));
+        .catch((err) => console.log(err.message));
     }
-  }, []); // Should this have a value...log
+  }, []);
 
   return (
     <CurrentUserContext.Provider value={currentUser}>
@@ -173,10 +173,10 @@ const App = () => {
           <div className="page__container">
             <Header
               weatherData={weatherData}
+              isLoggedIn={isLoggedIn}
               addModalClick={() => {
                 setActiveModal(MODAL_TYPE.ADD);
               }}
-              isLoggedIn={isLoggedIn}
               handleRegisterClick={() => {
                 setActiveModal(MODAL_TYPE.SIGNUP);
               }}
@@ -188,7 +188,7 @@ const App = () => {
               <ProtectedRoute
                 path="/profile"
                 loggedIn={isLoggedIn}
-                currentUser={currentUser} // Should this be here to protect user data???
+                currentUser={currentUser}
               >
                 <Route path="/profile">
                   <Profile
@@ -197,6 +197,7 @@ const App = () => {
                     addModalClick={() => {
                       setActiveModal(MODAL_TYPE.ADD);
                     }}
+                    currentUser={currentUser}
                   />
                 </Route>
               </ProtectedRoute>

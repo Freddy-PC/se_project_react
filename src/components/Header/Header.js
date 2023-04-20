@@ -1,25 +1,23 @@
-import React, { useContext } from "react";
+import React from "react";
 import "./Header.css";
 import logoImage from "../../images/logo.png";
 // import avatarImage from "../../images/avatar-image.png";
 import ToggleSwitch from "../ToggleSwitch/ToggleSwitch";
 import { NavLink } from "react-router-dom";
+import { useContext } from "react";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 
 const Header = ({
   weatherData,
-  addModalClick,
   isLoggedIn,
+  addModalClick,
   handleRegisterClick,
   handleLoginClick,
 }) => {
   const currentUser = useContext(CurrentUserContext);
-  // const username = currentUser.data.name;
-  console.log(currentUser.name);
-  // {username} where NAME HERE is???
+  console.log(currentUser);
 
   if (!weatherData) return null;
-
   const currentDate = new Date().toLocaleString("default", {
     month: "long",
     day: "numeric",
