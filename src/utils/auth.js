@@ -10,15 +10,15 @@ const processServerResponse = (res) => {
 // Slower engine if I import same constant from api.js???
 
 // user registration
-const userRegister = async (name, avatar, email, password) => {
+const userRegister = async (email, password, name, avatar) => {
   const res = await fetch(`${baseUrl}/signup`, {
     method: "POST",
     headers: headers,
     body: JSON.stringify({
-      name,
-      avatar,
       email,
       password,
+      name,
+      avatar,
     }),
   });
   return processServerResponse(res);

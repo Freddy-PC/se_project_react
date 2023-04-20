@@ -7,7 +7,7 @@ const RegisterModal = ({ onClose, handleRegister }) => {
   const history = useHistory();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [username, setUsername] = useState("");
+  const [name, setName] = useState("");
   const [avatar, setAvatar] = useState("");
 
   const handleEmail = (evt) => {
@@ -16,8 +16,8 @@ const RegisterModal = ({ onClose, handleRegister }) => {
   const handlePassword = (evt) => {
     setPassword(evt.target.value);
   };
-  const handleUsername = (evt) => {
-    setUsername(evt.target.value);
+  const handleName = (evt) => {
+    setName(evt.target.value);
   };
   const handleAvatar = (evt) => {
     setAvatar(evt.target.value);
@@ -25,7 +25,7 @@ const RegisterModal = ({ onClose, handleRegister }) => {
 
   function handleSubmit(e) {
     e.preventDefault();
-    handleRegister({ email, password, username, avatar });
+    handleRegister({ email, password, name, avatar });
     history.push("/profile");
   }
 
@@ -67,8 +67,8 @@ const RegisterModal = ({ onClose, handleRegister }) => {
           placeholder="Name"
           id="Name"
           required
-          onChange={handleUsername}
-          value={username}
+          onChange={handleName}
+          value={name}
         />
         <label className="form__heading">Avatar URL</label>
         <input

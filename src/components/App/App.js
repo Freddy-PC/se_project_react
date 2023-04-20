@@ -123,14 +123,14 @@ const App = () => {
   };
 
   // Handler for signup: close modal & automatically sign-in user
-  function handleRegister({ name, avatar, email, password }) {
+  function handleRegister({ email, password, name, avatar }) {
     auth
-      .userRegister(name, avatar, email, password)
+      .userRegister(email, password, name, avatar)
       .then((res) => {
         setIsLoggedIn(true);
         setCurrentUser(res);
         closeAllModals();
-        // console.log(res);
+        console.log(res);
       })
       .catch((err) => console.log(err));
   }
@@ -144,6 +144,7 @@ const App = () => {
         // logged in will be true & res = user
         setIsLoggedIn(true);
         setCurrentUser(res);
+        console.log(res);
         closeAllModals();
       })
       .catch((err) => console.log(err));
