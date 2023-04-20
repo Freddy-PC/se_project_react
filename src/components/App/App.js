@@ -25,6 +25,7 @@ import auth from "../../utils/auth";
 import RegisterModal from "../RegisterModal/RegisterModal";
 import LoginModal from "../LoginModal/LoginModal";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
+import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 
 const App = () => {
   const [weatherData, setWeatherData] = useState({});
@@ -184,15 +185,21 @@ const App = () => {
               }}
             />
             <Switch>
-              <Route path="/profile">
-                <Profile
-                  cards={clothingItems}
-                  cardClick={handleClick}
-                  addModalClick={() => {
-                    setActiveModal(MODAL_TYPE.ADD);
-                  }}
-                />
-              </Route>
+              <ProtectedRoute
+                path="/profile"
+                loggedIn={isLoggedIn}
+                currentUser={currentUser} // Should this be here to protect user data???
+              >
+                <Route path="/profile">
+                  <Profile
+                    cards={clothingItems}
+                    cardClick={handleClick}
+                    addModalClick={() => {
+                      setActiveModal(MODAL_TYPE.ADD);
+                    }}
+                  />
+                </Route>
+              </ProtectedRoute>
               <Route path="/">
                 <Main
                   weatherData={weatherData}
