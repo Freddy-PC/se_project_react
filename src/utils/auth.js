@@ -26,7 +26,7 @@ const userRegister = async (email, password, name, avatar) => {
 };
 
 // user authorization + set token
-const userAuthorize = async (email, password) => {
+const userLogin = async (email, password) => {
   const res = await fetch(`${baseUrl}/signin`, {
     method: "POST",
     headers: headers,
@@ -57,5 +57,5 @@ const getUser = async () => {
 };
 
 // Make use more apparent
-const auth = { userRegister, userAuthorize, getUser };
+const auth = { userRegister, userLogin, getUser };
 export default auth;

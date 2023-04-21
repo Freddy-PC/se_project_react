@@ -123,6 +123,8 @@ const App = () => {
   };
 
   // Handler for signup: close modal & automatically sign-in user
+
+  // Add function handleSignIn to add & save new user data to Back-end???
   function handleRegister({ email, password, name, avatar }) {
     auth
       .userRegister(email, password, name, avatar)
@@ -130,21 +132,19 @@ const App = () => {
         setIsLoggedIn(true);
         setCurrentUser(res);
         closeAllModals();
-        console.log(res);
       })
       .catch((err) => console.log(err));
   }
 
   // Handler for signin: check localstorage, close modal & sign-in user
   // login success = check server gave access in response & add to localStorage
-  function handleSignin({ email, password }) {
+  function handleSignin(email, password) {
     auth
-      .userAuthorize(email, password)
+      .userLogin(email, password)
       .then((res) => {
         // logged in will be true & res = user
         setIsLoggedIn(true);
-        setCurrentUser(res);
-        console.log(res);
+        setCurrentUser(res.token);
         closeAllModals();
       })
       .catch((err) => console.log(err));
@@ -152,14 +152,15 @@ const App = () => {
 
   // Check JWT when mounting app
   useEffect(() => {
-    const token = localStorage.getItem("jwt");
+    const token = localStorage.getItem("token");
     if (token) {
       auth
         .getUser(token)
         .then((res) => {
           // logged in will be true & res = user
           setIsLoggedIn(true);
-          setCurrentUser(res);
+          setCurrentUser(res.data);
+          console.log(res);
         })
         .catch((err) => console.log(err.message));
     }

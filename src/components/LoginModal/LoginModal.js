@@ -17,7 +17,7 @@ const LoginModal = ({ onClose, handleSignin }) => {
 
   function handleSubmit(e) {
     e.preventDefault();
-    handleSignin({ email, password });
+    handleSignin(email, password);
     history.push("/profile");
   }
 
