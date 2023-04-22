@@ -68,7 +68,9 @@
   font-weight: 700;
   line-height: 24px;
 }
-
+.item-modal_delete-button_hidden {
+  display: none;
+}
 .item-modal__delete-button:hover {
   opacity: 50%;
   cursor: pointer;

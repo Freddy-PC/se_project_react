@@ -235,6 +235,7 @@ const App = () => {
               handleDelete={() => {
                 setActiveModal(MODAL_TYPE.DELETE);
               }}
+              currentUser={currentUser}
             />
           )}
           {activeModal === MODAL_TYPE.DELETE && (
