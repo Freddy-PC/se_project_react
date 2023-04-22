@@ -44,9 +44,9 @@ const userLogin = async (email, password) => {
   // .catch() handled in app.js
 };
 
-// compare token validity with server
+// compare token validity with server (/users from express file)
 const getUser = async () => {
-  const res = await fetch(`${baseUrl}/user/me`, {
+  const res = await fetch(`${baseUrl}/users/me`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",

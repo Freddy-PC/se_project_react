@@ -1,5 +1,5 @@
 // Not sure hows to implement closing modal when clicked outside ????
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { Switch, Route } from "react-router-dom";
 import "./App.css";
 import Header from "../Header/Header";
@@ -122,8 +122,29 @@ const App = () => {
       .catch((err) => console.log(err));
   };
 
-  // Handler for signup: close modal & automatically sign-in user
+  // only runs when one of its dependencies update
+  const fetchUserInfo = useCallback((token) => {
+    auth
+      .getUser(token)
+      .then((res) => {
+        // logged in will be true & res = user
+        setIsLoggedIn(true);
+        setCurrentUser(res);
+        console.log(res);
+        console.log(res.data);
+      })
+      .catch((err) => console.log(err.message));
+  }, []);
 
+  // Fetch the user info on page load if possible
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      fetchUserInfo(token);
+    }
+  }, [fetchUserInfo]);
+
+  // Handler for signup: close modal & automatically sign-in user
   // Add function handleSignIn to add & save new user data to Back-end???
   function handleRegister({ email, password, name, avatar }) {
     auth
@@ -132,6 +153,7 @@ const App = () => {
         setIsLoggedIn(true);
         setCurrentUser(res);
         closeAllModals();
+        console.log(res);
       })
       .catch((err) => console.log(err));
   }
@@ -142,29 +164,15 @@ const App = () => {
     auth
       .userLogin(email, password)
       .then((res) => {
-        // logged in will be true & res = user
         setIsLoggedIn(true);
-        setCurrentUser(res.token);
+        setCurrentUser(res);
+        console.log(res);
+        // Fetch the user info after login, now that we have the token
+        fetchUserInfo(res.token);
         closeAllModals();
       })
       .catch((err) => console.log(err));
   }
-
-  // Check JWT when mounting app
-  useEffect(() => {
-    const token = localStorage.getItem("token");
-    if (token) {
-      auth
-        .getUser(token)
-        .then((res) => {
-          // logged in will be true & res = user
-          setIsLoggedIn(true);
-          setCurrentUser(res.data);
-          console.log(res);
-        })
-        .catch((err) => console.log(err.message));
-    }
-  }, []);
 
   return (
     <CurrentUserContext.Provider value={currentUser}>
