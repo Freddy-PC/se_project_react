@@ -1,8 +1,7 @@
 const baseUrl =
-  process.env.NODE === "production"
+  process.env.NODE_ENV === "production"
     ? "https://my-json-server.typicode.com/Freddy-PC/se_project_react"
     : "http://localhost:3001";
-const headers = { "Content-Type": "application/json" };
 
 const processServerResponse = (res) => {
   if (res.ok) {
@@ -16,7 +15,9 @@ const processServerResponse = (res) => {
 const userRegister = async (name, avatar, email, password) => {
   const res = await fetch(`${baseUrl}/signup`, {
     method: "POST",
-    headers: headers,
+    headers: {
+      "Content-Type": "application/json",
+    },
     body: JSON.stringify({
       name,
       avatar,
@@ -34,7 +35,9 @@ const userRegister = async (name, avatar, email, password) => {
 const userLogin = async (email, password) => {
   const res = await fetch(`${baseUrl}/signin`, {
     method: "POST",
-    headers: headers,
+    headers: {
+      "Content-Type": "application/json",
+    },
     body: JSON.stringify({
       email,
       password,
@@ -57,8 +60,6 @@ const getUser = async () => {
       "Content-Type": "application/json",
       authorization: `Bearer ${localStorage.getItem("token")}`,
     },
-  }).then((data) => {
-    return data;
   });
   return processServerResponse(res);
 };
