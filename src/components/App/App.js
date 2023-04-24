@@ -209,6 +209,9 @@ const App = () => {
                     addModalClick={() => {
                       setActiveModal(MODAL_TYPE.ADD);
                     }}
+                    handleEditClick={() => {
+                      setActiveModal(MODAL_TYPE.EDIT);
+                    }}
                     currentUser={currentUser}
                   />
                 </Route>
