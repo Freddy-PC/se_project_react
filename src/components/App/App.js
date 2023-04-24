@@ -26,6 +26,7 @@ import RegisterModal from "../RegisterModal/RegisterModal";
 import LoginModal from "../LoginModal/LoginModal";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
+import EditProfileModal from "../EditProfileModal/EditProfileModal";
 
 const App = () => {
   const [weatherData, setWeatherData] = useState({});
@@ -61,6 +62,7 @@ const App = () => {
     DELETE: "delete", // Delete card
     SIGNUP: "signup",
     LOGIN: "login",
+    EDIT: "edit",
   };
 
   // On Modal when button clicked not 'preview'
@@ -131,7 +133,6 @@ const App = () => {
         setIsLoggedIn(true);
         setCurrentUser(res);
         console.log(res);
-        console.log(res.data);
       })
       .catch((err) => console.log(err.message));
   }, []);
@@ -260,6 +261,12 @@ const App = () => {
           )}
           {activeModal === MODAL_TYPE.LOGIN && (
             <LoginModal onClose={closeAllModals} handleSignin={handleSignin} />
+          )}
+          {activeModal === MODAL_TYPE.EDIT && (
+            <EditProfileModal
+              onClose={closeAllModals}
+              // handleEditProfile={handleEditProfile}
+            />
           )}
         </CurrentTemperatureUnitContext.Provider>
       </div>
