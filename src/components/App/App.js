@@ -1,6 +1,6 @@
 // Not sure hows to implement closing modal when clicked outside ????
 import React, { useState, useEffect, useCallback } from "react";
-import { Switch, Route } from "react-router-dom";
+import { Switch, Route, useHistory } from "react-router-dom";
 import "./App.css";
 import Header from "../Header/Header";
 import Main from "../Main/Main";
@@ -35,6 +35,7 @@ const App = () => {
   const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState("F");
   const [clothingItems, setClothingItems] = useState([]);
 
+  const history = useHistory();
   const [isLoggedIn, setIsLoggedIn] = useState(false); // Handle logged status
   const [currentUser, setCurrentUser] = useState({}); // No user at start
 
@@ -176,6 +177,14 @@ const App = () => {
       .catch((err) => console.log(err));
   }
 
+  function handleLogout(e) {
+    e.preventDefault();
+    localStorage.removeItem("token");
+    setIsLoggedIn(false);
+    setCurrentUser({});
+    history.push("/");
+  }
+
   return (
     <CurrentUserContext.Provider value={currentUser}>
       <div className="page">
@@ -213,6 +222,7 @@ const App = () => {
                       setActiveModal(MODAL_TYPE.EDIT);
                     }}
                     currentUser={currentUser}
+                    handleLogout={handleLogout}
                   />
                 </Route>
               </ProtectedRoute>

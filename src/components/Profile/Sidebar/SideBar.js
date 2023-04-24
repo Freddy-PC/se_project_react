@@ -2,7 +2,7 @@ import React from "react";
 import "./SideBar.css";
 import avatarImage from "../../../images/avatar-image.png";
 
-function SideBar({ currentUser, handleEditClick }) {
+function SideBar({ currentUser, handleEditClick, handleLogout }) {
   return (
     <div className="sidebar__container">
       <div className="sidebar__info">
@@ -17,7 +17,9 @@ function SideBar({ currentUser, handleEditClick }) {
         <p className="sidebar__profile-data" onClick={handleEditClick}>
           Change profile data
         </p>
-        <p className="sidebar__logout">Log out</p>
+        <p className="sidebar__logout" onClick={handleLogout}>
+          Log out
+        </p>
       </div>
     </div>
   );

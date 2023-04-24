@@ -10,10 +10,15 @@ function Profile({
   addModalClick,
   currentUser,
   handleEditClick,
+  handleLogout,
 }) {
   return (
     <div className="profile__container">
-      <SideBar currentUser={currentUser} handleEditClick={handleEditClick} />
+      <SideBar
+        currentUser={currentUser}
+        handleEditClick={handleEditClick}
+        handleLogout={handleLogout}
+      />
       <ClothesSection
         cards={cards}
         cardClick={cardClick}
