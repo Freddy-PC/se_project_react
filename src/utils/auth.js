@@ -1,4 +1,7 @@
-const baseUrl = "http://localhost:3001";
+const baseUrl =
+  process.env.NODE === "production"
+    ? "https://my-json-server.typicode.com/Freddy-PC/se_project_react"
+    : "http://localhost:3001";
 const headers = { "Content-Type": "application/json" };
 
 const processServerResponse = (res) => {
@@ -10,16 +13,18 @@ const processServerResponse = (res) => {
 // Slower engine if I import same constant from api.js???
 
 // user registration
-const userRegister = async (email, password, name, avatar) => {
+const userRegister = async (name, avatar, email, password) => {
   const res = await fetch(`${baseUrl}/signup`, {
     method: "POST",
     headers: headers,
     body: JSON.stringify({
-      email,
-      password,
       name,
       avatar,
+      email,
+      password,
     }),
+  }).then((data) => {
+    return data;
   });
   return processServerResponse(res);
   // .catch() handled in app.js
@@ -52,6 +57,8 @@ const getUser = async () => {
       "Content-Type": "application/json",
       authorization: `Bearer ${localStorage.getItem("token")}`,
     },
+  }).then((data) => {
+    return data;
   });
   return processServerResponse(res);
 };
