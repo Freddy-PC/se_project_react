@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import { Link, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import "../ModalWithForm/ModalWithForm.js";
 
-const LoginModal = ({ onClose, handleSignin }) => {
+const LoginModal = ({ onClose, handleSignin, handleRedirect }) => {
   const history = useHistory();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -51,11 +51,8 @@ const LoginModal = ({ onClose, handleSignin }) => {
           onChange={handlePassword}
           value={password}
         />
-        <p className="form__auth-text">
-          or
-          <Link className="form__auth-link" to="/">
-            Register
-          </Link>
+        <p className="form__auth-text" onClick={handleRedirect}>
+          or Register
         </p>
       </ModalWithForm>
     </>

@@ -38,10 +38,6 @@ const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false); // Handle logged status
   const [currentUser, setCurrentUser] = useState({}); // No user at start
 
-  // Would it be more optimal to make something like this for the header?
-  // handleRegisterClick={handleRegisterClick}
-  // const handleRegisterClick = () => setActiveModal(MODAL_TYPE.SIGNUP);
-
   // Handle changing temp unit
   const handleToggleSwitchChange = () => {
     currentTemperatureUnit === "F"
@@ -65,7 +61,12 @@ const App = () => {
     EDIT: "edit",
   };
 
-  // On Modal when button clicked not 'preview'
+  const handleRedirect = () => {
+    activeModal === MODAL_TYPE.SIGNUP
+      ? setActiveModal(MODAL_TYPE.LOGIN)
+      : setActiveModal(MODAL_TYPE.SIGNUP);
+  };
+
   const closeAllModals = () => {
     setActiveModal("");
   };
@@ -257,10 +258,15 @@ const App = () => {
             <RegisterModal
               onClose={closeAllModals}
               handleRegister={handleRegister}
+              handleRedirect={handleRedirect}
             />
           )}
           {activeModal === MODAL_TYPE.LOGIN && (
-            <LoginModal onClose={closeAllModals} handleSignin={handleSignin} />
+            <LoginModal
+              onClose={closeAllModals}
+              handleSignin={handleSignin}
+              handleRedirect={handleRedirect}
+            />
           )}
           {activeModal === MODAL_TYPE.EDIT && (
             <EditProfileModal

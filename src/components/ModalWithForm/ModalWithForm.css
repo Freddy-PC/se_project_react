@@ -52,6 +52,8 @@
 
 .form {
   margin-left: 28px;
+  display: flex;
+  flex-direction: column;
 }
 .form__heading {
   font-family: "Cabinet Grotesk Bold", "Arial", sans-serif;
@@ -93,21 +95,37 @@
   color: rgba(0, 0, 0, 0.5);
 }
 .form__submit-button {
-  margin-top: 32px;
+  margin: 0;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
   height: 36px;
-  width: 124px;
+  width: 73px;
   border-radius: 4px;
   font-family: "Cabinet Grotesk Bold", "Arial", sans-serif;
   font-size: 16px;
   font-weight: 700;
   line-height: 20px;
-  background-color: rgba(0, 0, 0, 1);
+  background-color: rgba(0, 0, 0, 0.3);
   color: #fff;
+  border: none;
 }
 .form__submit-button:hover {
+  opacity: 0.6;
+}
+
+.form__auth-text {
+  position: relative;
+  top: 43px;
+  left: 90px;
+  font-family: "Cabinet Grotesk Bold", "Arial", sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 20px;
+  cursor: pointer;
+}
+
+.form__auth-text:hover {
   opacity: 0.6;
 }
