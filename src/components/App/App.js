@@ -105,7 +105,7 @@ const App = () => {
       .catch((err) => console.log(err));
   }, []);
 
-  // Delete card vai id
+  // Delete card api id
   const handleCardDelete = (card) => {
     deleteItems(card.id)
       .then(() => {
@@ -154,9 +154,6 @@ const App = () => {
         auth.getUser(res).then((data) => {
           setCurrentUser(data);
         });
-        // getItems().then((data) => {
-        //   setApiItems();
-        // })
       })
       .catch((err) => console.log(err));
   }
@@ -178,6 +175,7 @@ const App = () => {
         .then((res) => {
           // logged in will be true & res = user
           setCurrentUser(res);
+          setIsLoggedIn(true);
           console.log(res);
         })
         .catch((err) => console.log(err.message));
