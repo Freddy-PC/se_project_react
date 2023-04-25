@@ -1,5 +1,5 @@
 // Not sure hows to implement closing modal when clicked outside ????
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect } from "react";
 import { Switch, Route, useHistory } from "react-router-dom";
 import "./App.css";
 import Header from "../Header/Header";
@@ -126,53 +126,37 @@ const App = () => {
       .catch((err) => console.log(err));
   };
 
-  // only runs when one of its dependencies update
-  const fetchUserInfo = useCallback((token) => {
-    auth
-      .getUser(token)
-      .then((res) => {
-        // logged in will be true & res = user
-        setIsLoggedIn(true);
-        setCurrentUser(res);
-        console.log(res);
-      })
-      .catch((err) => console.log(err.message));
-  }, []);
-
-  // Fetch the user info on page load if possible
-  useEffect(() => {
-    const token = localStorage.getItem("token");
-    if (token) {
-      fetchUserInfo(token);
-    }
-  }, [fetchUserInfo]);
-
   // Handler for signup: close modal & automatically sign-in user
   // Add function handleSignIn to add & save new user data to Back-end???
   function handleRegister({ name, avatar, email, password }) {
     auth
       .userRegister(name, avatar, email, password)
       .then((res) => {
-        setIsLoggedIn(true);
-        setCurrentUser(res);
-        closeAllModals();
-        console.log(res);
+        auth.userLogin(email, password).then(() => {
+          localStorage.setItem("jwt", res.token);
+          setIsLoggedIn(true);
+          setCurrentUser(res);
+          closeAllModals();
+        });
       })
       .catch((err) => console.log(err));
   }
 
   // Handler for signin: check localstorage, close modal & sign-in user
   // login success = check server gave access in response & add to localStorage
-  function handleSignin(email, password) {
+  function handleSignin({ email, password }) {
     auth
       .userLogin(email, password)
       .then((res) => {
         setIsLoggedIn(true);
-        setCurrentUser(res);
-        console.log(res);
-        // Fetch the user info after login, now that we have the token
-        fetchUserInfo(res.token);
         closeAllModals();
+        localStorage.setItem("jwt", res.token);
+        auth.getUser(res).then((data) => {
+          setCurrentUser(data);
+        });
+        // getItems().then((data) => {
+        //   setApiItems();
+        // })
       })
       .catch((err) => console.log(err));
   }
@@ -185,21 +169,20 @@ const App = () => {
     history.push("/");
   }
 
-  // // Fetch the user info on page load if possible
-  // useEffect(() => {
-  //   const token = localStorage.getItem("token");
-  //   if (localStorage.getItem("token")) {
-  //     setIsLoggedIn(true);
-  //     auth
-  //       .getUser(token)
-  //       .then((res) => {
-  //         // logged in will be true & res = user
-  //         setCurrentUser(res.data);
-  //         console.log(res);
-  //       })
-  //       .catch((err) => console.log(err.message));
-  //   }
-  // }, [isLoggedIn]);
+  // Fetch the user info on page load if possible
+  useEffect(() => {
+    const token = localStorage.getItem("jwt");
+    if (token) {
+      auth
+        .getUser(token)
+        .then((res) => {
+          // logged in will be true & res = user
+          setCurrentUser(res);
+          console.log(res);
+        })
+        .catch((err) => console.log(err.message));
+    }
+  }, [isLoggedIn]);
 
   return (
     <CurrentUserContext.Provider value={currentUser}>

@@ -44,11 +44,6 @@ const userLogin = async (email, password) => {
       email,
       password,
     }),
-  }).then((data) => {
-    if (data) {
-      localStorage.setItem("token", data.token);
-      return data;
-    }
   });
   return processServerResponse(res);
   // .catch() handled in app.js

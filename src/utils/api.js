@@ -9,7 +9,7 @@ const baseUrl =
 
 const headers = {
   "Content-Type": "application/json",
-  authorization: `Bearer ${localStorage.getItem("token")}`,
+  authorization: `Bearer ${localStorage.getItem("jwt")}`,
 };
 
 const processServerResponse = (res) => {
