@@ -39,6 +39,8 @@ const LoginModal = ({ onClose, handleSignin, handleRedirect }) => {
           required
           onChange={handleEmail}
           value={email}
+          minLength="1"
+          maxLength="30"
         />
         <label className="form__heading">Password</label>
         <input
@@ -50,6 +52,7 @@ const LoginModal = ({ onClose, handleSignin, handleRedirect }) => {
           required
           onChange={handlePassword}
           value={password}
+          minLength="5"
         />
         <p className="form__auth-text" onClick={handleRedirect}>
           or Register

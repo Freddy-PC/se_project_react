@@ -149,9 +149,9 @@ const App = () => {
 
   // Handler for signup: close modal & automatically sign-in user
   // Add function handleSignIn to add & save new user data to Back-end???
-  function handleRegister({ email, password, name, avatar }) {
+  function handleRegister({ name, avatar, email, password }) {
     auth
-      .userRegister(email, password, name, avatar)
+      .userRegister(name, avatar, email, password)
       .then((res) => {
         setIsLoggedIn(true);
         setCurrentUser(res);
@@ -184,6 +184,22 @@ const App = () => {
     setCurrentUser({});
     history.push("/");
   }
+
+  // // Fetch the user info on page load if possible
+  // useEffect(() => {
+  //   const token = localStorage.getItem("token");
+  //   if (localStorage.getItem("token")) {
+  //     setIsLoggedIn(true);
+  //     auth
+  //       .getUser(token)
+  //       .then((res) => {
+  //         // logged in will be true & res = user
+  //         setCurrentUser(res.data);
+  //         console.log(res);
+  //       })
+  //       .catch((err) => console.log(err.message));
+  //   }
+  // }, [isLoggedIn]);
 
   return (
     <CurrentUserContext.Provider value={currentUser}>
@@ -284,6 +300,7 @@ const App = () => {
           {activeModal === MODAL_TYPE.EDIT && (
             <EditProfileModal
               onClose={closeAllModals}
+              // currentUser={currentUser}
               // handleEditProfile={handleEditProfile}
             />
           )}

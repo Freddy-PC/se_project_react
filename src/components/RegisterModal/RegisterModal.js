@@ -25,7 +25,7 @@ const RegisterModal = ({ onClose, handleRegister, handleRedirect }) => {
 
   function handleSubmit(e) {
     e.preventDefault();
-    handleRegister({ email, password, name, avatar });
+    handleRegister({ name, avatar, email, password });
     history.push("/profile");
   }
 
@@ -47,6 +47,8 @@ const RegisterModal = ({ onClose, handleRegister, handleRedirect }) => {
           required
           onChange={handleEmail}
           value={email}
+          minLength="1"
+          maxLength="30"
         />
         <label className="form__heading">Password</label>
         <input
@@ -58,25 +60,28 @@ const RegisterModal = ({ onClose, handleRegister, handleRedirect }) => {
           required
           onChange={handlePassword}
           value={password}
+          minLength="5"
         />
         <label className="form__heading">Name</label>
         <input
           className="form__input form__input_type_image"
-          name="Name"
+          name="name"
           type="text"
           placeholder="Name"
-          id="Name"
+          id="name"
           required
           onChange={handleName}
           value={name}
+          minLength="1"
+          maxLength="30"
         />
         <label className="form__heading">Avatar URL</label>
         <input
           className="form__input form__input_type_image"
           name="Avatar URL"
-          type="text"
+          type="url"
           placeholder="Avatar URL"
-          id="avatar-URL"
+          id="avatar-url"
           required
           onChange={handleAvatar}
           value={avatar}

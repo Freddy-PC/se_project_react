@@ -1,7 +1,12 @@
 // Mock server (baseUrl for code reviewers)
 // access clothing from server
 // "https://my-json-server.typicode.com/Freddy-PC/se_project_react"
-const baseUrl = " http://localhost:3001";
+
+const baseUrl =
+  process.env.NODE_ENV === "production"
+    ? "https://my-json-server.typicode.com/Freddy-PC/se_project_react"
+    : "http://localhost:3001";
+
 const headers = {
   "Content-Type": "application/json",
   authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -11,7 +16,7 @@ const processServerResponse = (res) => {
   if (res.ok) {
     return res.json();
   }
-  return Promise.reject(`Error: ${res.status}`);
+  return Promise.reject(`Error: ${res.status} ${res.statusText}`);
 };
 // Application state to get clothing items
 const getItems = async () => {

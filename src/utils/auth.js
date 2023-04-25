@@ -3,6 +3,8 @@ const baseUrl =
     ? "https://my-json-server.typicode.com/Freddy-PC/se_project_react"
     : "http://localhost:3001";
 
+// If works,,test if header can be refactored bc only one has a difference
+
 const processServerResponse = (res) => {
   if (res.ok) {
     return res.json();
