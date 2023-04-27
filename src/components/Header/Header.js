@@ -16,8 +16,6 @@ const Header = ({
 }) => {
   const currentUser = useContext(CurrentUserContext);
   console.log(currentUser);
-  console.error(currentUser);
-  console.log(currentUser.name);
 
   if (!weatherData) return null;
   const currentDate = new Date().toLocaleString("default", {

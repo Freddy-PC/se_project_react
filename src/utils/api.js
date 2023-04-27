@@ -7,11 +7,6 @@ const baseUrl =
     ? "https://my-json-server.typicode.com/Freddy-PC/se_project_react"
     : "http://localhost:3001";
 
-const headers = {
-  "Content-Type": "application/json",
-  authorization: `Bearer ${localStorage.getItem("jwt")}`,
-};
-
 const processServerResponse = (res) => {
   if (res.ok) {
     return res.json();
@@ -19,20 +14,26 @@ const processServerResponse = (res) => {
   return Promise.reject(`Error: ${res.status} ${res.statusText}`);
 };
 // Application state to get clothing items
-const getItems = async () => {
+const getItems = async (token) => {
   const res = await fetch(`${baseUrl}/items`, {
     method: "GET",
-    headers: headers,
+    headers: {
+      "Content-Type": "application/json",
+      authorization: `Bearer ${token}`,
+    },
   });
   return processServerResponse(res);
   // .catch() handled in app.js
 };
 
 // Add new clothing item
-const addItems = async (name, imageUrl, weather) => {
+const addItems = async (name, imageUrl, weather, token) => {
   const res = await fetch(`${baseUrl}/items`, {
     method: "POST",
-    headers: headers,
+    headers: {
+      "Content-Type": "application/json",
+      authorization: `Bearer ${token}`,
+    },
     body: JSON.stringify({
       name,
       imageUrl,
@@ -44,10 +45,13 @@ const addItems = async (name, imageUrl, weather) => {
 };
 
 // Handler for removing an item (Using ID)
-const deleteItems = async (id) => {
+const deleteItems = async (id, token) => {
   const res = await fetch(`${baseUrl}/items/${id}`, {
     method: "DELETE",
-    headers: headers,
+    headers: {
+      "Content-Type": "application/json",
+      authorization: `Bearer ${token}`,
+    },
   });
   return processServerResponse(res);
   // .catch() handled in app.js

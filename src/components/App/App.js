@@ -98,9 +98,11 @@ const App = () => {
 
   // Get cards
   useEffect(() => {
-    getItems()
+    const token = localStorage.getItem("token");
+    getItems(token)
       .then((items) => {
         setClothingItems(items);
+        console.log(setClothingItems(items));
       })
       .catch((err) => console.log(err));
   }, []);
@@ -127,7 +129,6 @@ const App = () => {
   };
 
   // Handler for signup: close modal & automatically sign-in user
-  // Add function handleSignIn to add & save new user data to Back-end???
   function handleRegister({ name, avatar, email, password }) {
     auth
       .userRegister(name, avatar, email, password)
@@ -138,7 +139,6 @@ const App = () => {
       })
       .catch((err) => console.log(err));
     handleSignin(email, password);
-    console.log(handleSignin);
   }
 
   // Handler for signin: check localstorage, close modal & sign-in user
@@ -147,12 +147,14 @@ const App = () => {
     auth
       .userLogin(email, password)
       .then((res) => {
-        console.log(res); // object token
-        console.log(res.token); // string token
-        setIsLoggedIn(true);
-        closeAllModals();
-        auth.getUser(res).then((data) => {
-          console.log(data);
+        if (res) {
+          localStorage.setItem("token", res.token); // set string token
+          setIsLoggedIn(true);
+          closeAllModals();
+          setCurrentUser(res);
+        }
+        auth.getUser(res.token).then((data) => {
+          // check token
           setCurrentUser(data);
         });
       })
@@ -167,20 +169,19 @@ const App = () => {
     history.push("/");
   }
 
-  // Fetch the user info on page load if possible
+  // On page load: Fetch the user info if possible
   useEffect(() => {
-    if (localStorage.getItem("token")) {
-      const token = localStorage.getItem("token");
-      // setIsLoggedIn(true); // will log the user back in if authenticated
+    const token = localStorage.getItem("token");
+    if (token) {
       auth
         .getUser(token)
         .then((res) => {
-          console.log(res); // res.data = token???
-          setCurrentUser(res.data);
+          setCurrentUser(res); // res object
+          setIsLoggedIn(true); // logs user back in if refresh
         })
         .catch((err) => console.log(err.message));
     }
-  }, [isLoggedIn]);
+  }, []);
 
   return (
     <CurrentUserContext.Provider value={currentUser}>
@@ -192,6 +193,7 @@ const App = () => {
             <Header
               weatherData={weatherData}
               isLoggedIn={isLoggedIn}
+              currentUser={currentUser}
               addModalClick={() => {
                 setActiveModal(MODAL_TYPE.ADD);
               }}

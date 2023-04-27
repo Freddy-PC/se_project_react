@@ -42,23 +42,18 @@ const userLogin = async (email, password) => {
       email,
       password,
     }),
-  }).then((data) => {
-    if (data) {
-      localStorage.setItem("token", data.token);
-      return data;
-    }
   });
   return processServerResponse(res);
   // .catch() handled in app.js
 };
 
 // compare token validity with server (/users from express file)
-const getUser = async () => {
+const getUser = async (token) => {
   const res = await fetch(`${baseUrl}/users/me`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
-      authorization: `Bearer ${localStorage.getItem("token")}`,
+      authorization: `Bearer ${token}`,
     },
   });
   return processServerResponse(res);
