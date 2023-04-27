@@ -132,26 +132,27 @@ const App = () => {
     auth
       .userRegister(name, avatar, email, password)
       .then((res) => {
-        auth.userLogin(email, password).then(() => {
-          localStorage.setItem("jwt", res.token);
-          setIsLoggedIn(true);
-          setCurrentUser(res);
-          closeAllModals();
-        });
+        closeAllModals();
+        setIsLoggedIn(true);
+        setCurrentUser(res);
       })
       .catch((err) => console.log(err));
+    handleSignin(email, password);
+    console.log(handleSignin);
   }
 
   // Handler for signin: check localstorage, close modal & sign-in user
   // login success = check server gave access in response & add to localStorage
-  function handleSignin({ email, password }) {
+  function handleSignin(email, password) {
     auth
       .userLogin(email, password)
       .then((res) => {
+        console.log(res); // object token
+        console.log(res.token); // string token
         setIsLoggedIn(true);
         closeAllModals();
-        localStorage.setItem("jwt", res.token);
         auth.getUser(res).then((data) => {
+          console.log(data);
           setCurrentUser(data);
         });
       })
@@ -168,15 +169,14 @@ const App = () => {
 
   // Fetch the user info on page load if possible
   useEffect(() => {
-    const token = localStorage.getItem("jwt");
-    if (token) {
+    if (localStorage.getItem("token")) {
+      const token = localStorage.getItem("token");
+      // setIsLoggedIn(true); // will log the user back in if authenticated
       auth
         .getUser(token)
         .then((res) => {
-          // logged in will be true & res = user
-          setCurrentUser(res);
-          setIsLoggedIn(true);
-          console.log(res);
+          console.log(res); // res.data = token???
+          setCurrentUser(res.data);
         })
         .catch((err) => console.log(err.message));
     }
