@@ -17,7 +17,7 @@ const EditProfileModal = ({ onClose, currentUser, handleEditProfile }) => {
 
   function handleSubmit(e) {
     e.preventDefault();
-    handleEditProfile({ name, avatar, token: localStorage.getItem("token") });
+    handleEditProfile(name, avatar);
     history.push("/profile");
   }
 

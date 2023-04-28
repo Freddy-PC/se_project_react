@@ -169,9 +169,9 @@ const App = () => {
   }
 
   // Change profile name & avatar
-  function handleEditProfile({ name, avatar, token }) {
+  function handleEditProfile(name, avatar) {
     auth
-      .editUserInfo(name, avatar, token)
+      .editUserInfo(name, avatar)
       .then((res) => {
         closeAllModals();
         setCurrentUser(res.data);

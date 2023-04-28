@@ -60,12 +60,12 @@ const getUser = async (token) => {
 };
 
 // Edits profile data on server promise
-const editUserInfo = async (name, avatar, token) => {
+const editUserInfo = async (name, avatar) => {
   const res = await fetch(`${baseUrl}/users/me`, {
     method: "PATCH",
     headers: {
       "Content-Type": "application/json",
-      authorization: `Bearer ${token}`,
+      authorization: `Bearer ${localStorage.getItem("token")}`,
     },
     body: JSON.stringify({
       name,
