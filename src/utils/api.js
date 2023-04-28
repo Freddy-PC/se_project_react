@@ -14,12 +14,12 @@ const processServerResponse = (res) => {
   return Promise.reject(`Error: ${res.status} ${res.statusText}`);
 };
 // Application state to get clothing items
-const getItems = async (token) => {
+const getItems = async () => {
   const res = await fetch(`${baseUrl}/items`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
-      authorization: `Bearer ${token}`,
+      authorization: `Bearer ${localStorage.getItem("token")}`,
     },
   });
   return processServerResponse(res);
@@ -27,12 +27,12 @@ const getItems = async (token) => {
 };
 
 // Add new clothing item
-const addItems = async (name, imageUrl, weather, token) => {
+const addItems = async (name, imageUrl, weather) => {
   const res = await fetch(`${baseUrl}/items`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
-      authorization: `Bearer ${token}`,
+      authorization: `Bearer ${localStorage.getItem("token")}`,
     },
     body: JSON.stringify({
       name,
@@ -45,12 +45,12 @@ const addItems = async (name, imageUrl, weather, token) => {
 };
 
 // Handler for removing an item (Using ID)
-const deleteItems = async (id, token) => {
+const deleteItems = async (id) => {
   const res = await fetch(`${baseUrl}/items/${id}`, {
     method: "DELETE",
     headers: {
       "Content-Type": "application/json",
-      authorization: `Bearer ${token}`,
+      authorization: `Bearer ${localStorage.getItem("token")}`,
     },
   });
   return processServerResponse(res);

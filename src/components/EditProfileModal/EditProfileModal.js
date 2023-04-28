@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import "../ModalWithForm/ModalWithForm.js";
 
-const EditProfileModal = ({ onClose, handleEditProfile }) => {
+const EditProfileModal = ({ onClose, currentUser, handleEditProfile }) => {
   const history = useHistory();
   const [name, setName] = useState("");
   const [avatar, setAvatar] = useState("");
@@ -17,9 +17,15 @@ const EditProfileModal = ({ onClose, handleEditProfile }) => {
 
   function handleSubmit(e) {
     e.preventDefault();
-    handleEditProfile(name, avatar);
+    handleEditProfile({ name, avatar, token: localStorage.getItem("token") });
     history.push("/profile");
   }
+
+  // Profile values returned when modal opened
+  useEffect(() => {
+    setName(currentUser.name);
+    setAvatar(currentUser.avatar);
+  }, [currentUser]);
 
   return (
     <>
@@ -32,10 +38,10 @@ const EditProfileModal = ({ onClose, handleEditProfile }) => {
         <label className="form__heading">Name</label>
         <input
           className="form__input form__input_type_image"
-          name="Name"
+          name="name"
           type="text"
           placeholder="Name"
-          id="Name"
+          id="name"
           required
           onChange={handleName}
           value={name}

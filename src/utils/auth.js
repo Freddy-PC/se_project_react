@@ -59,6 +59,22 @@ const getUser = async (token) => {
   return processServerResponse(res);
 };
 
+// Edits profile data on server promise
+const editUserInfo = async (name, avatar, token) => {
+  const res = await fetch(`${baseUrl}/users/me`, {
+    method: "PATCH",
+    headers: {
+      "Content-Type": "application/json",
+      authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify({
+      name,
+      avatar,
+    }),
+  });
+  return processServerResponse(res);
+};
+
 // Make use more apparent
-const auth = { userRegister, userLogin, getUser };
+const auth = { userRegister, userLogin, getUser, editUserInfo };
 export default auth;

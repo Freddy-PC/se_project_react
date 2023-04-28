@@ -15,7 +15,6 @@ const Header = ({
   handleLoginClick,
 }) => {
   const currentUser = useContext(CurrentUserContext);
-  console.log(currentUser);
 
   if (!weatherData) return null;
   const currentDate = new Date().toLocaleString("default", {

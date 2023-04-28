@@ -49,6 +49,7 @@ const App = () => {
   // When image clicked...(clothing property accessed via 'card')
   const handleClick = (card) => {
     setSelectedCard(card);
+    console.log(card);
     setActiveModal(MODAL_TYPE.PREVIEW);
   };
 
@@ -96,17 +97,16 @@ const App = () => {
     }
   }, []); // Only called once to prevent Error: 429
 
-  // Get cards
+  // Get cards in database
   useEffect(() => {
-    const token = localStorage.getItem("token");
-    getItems(token)
+    getItems()
       .then((items) => {
         setClothingItems(items);
-        console.log(setClothingItems(items));
       })
       .catch((err) => console.log(err));
   }, []);
 
+  // Won't delete new cards??? Need to delete on database? Code that?
   // Delete card api id
   const handleCardDelete = (card) => {
     deleteItems(card.id)
@@ -117,12 +117,11 @@ const App = () => {
       .catch((err) => console.log(err));
   };
 
-  // Won't delete new cards???
   // Handler updates clothingItems state with array
   const handleAddItemSubmit = (name, link, weather) => {
     addItems(name, link, weather)
       .then((item) => {
-        setClothingItems([item, ...clothingItems]);
+        setClothingItems([item.data, ...clothingItems]);
         closeAllModals();
       })
       .catch((err) => console.log(err));
@@ -154,7 +153,7 @@ const App = () => {
           setCurrentUser(res);
         }
         auth.getUser(res.token).then((data) => {
-          // check token
+          // set user token & data
           setCurrentUser(data);
         });
       })
@@ -167,6 +166,17 @@ const App = () => {
     setIsLoggedIn(false);
     setCurrentUser({});
     history.push("/");
+  }
+
+  // Change profile name & avatar
+  function handleEditProfile({ name, avatar, token }) {
+    auth
+      .editUserInfo(name, avatar, token)
+      .then((res) => {
+        closeAllModals();
+        setCurrentUser(res.data);
+      })
+      .catch((err) => console.log(err));
   }
 
   // On page load: Fetch the user info if possible
@@ -193,7 +203,7 @@ const App = () => {
             <Header
               weatherData={weatherData}
               isLoggedIn={isLoggedIn}
-              currentUser={currentUser}
+              currentUser={currentUser} // remove???
               addModalClick={() => {
                 setActiveModal(MODAL_TYPE.ADD);
               }}
@@ -283,8 +293,8 @@ const App = () => {
           {activeModal === MODAL_TYPE.EDIT && (
             <EditProfileModal
               onClose={closeAllModals}
-              // currentUser={currentUser}
-              // handleEditProfile={handleEditProfile}
+              currentUser={currentUser}
+              handleEditProfile={handleEditProfile}
             />
           )}
         </CurrentTemperatureUnitContext.Provider>
