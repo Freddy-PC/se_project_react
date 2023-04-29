@@ -57,4 +57,30 @@ const deleteItems = async (id) => {
   // .catch() handled in app.js
 };
 
-export { getItems, addItems, deleteItems };
+// PUT or patch???
+const addCardLike = async ({ id, user }) => {
+  const res = await fetch(`${baseUrl}/items/${id}/likes`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+      authorization: `Bearer ${localStorage.getItem("token")}`,
+    },
+  });
+  return processServerResponse(res);
+  // .catch() handled in app.js
+};
+
+const removeCardLike = async (id) => {
+  const res = await fetch(`${baseUrl}/items/${id}/likes`, {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+      authorization: `Bearer ${localStorage.getItem("token")}`,
+    },
+  });
+  return processServerResponse(res);
+  // .catch() handled in app.js
+};
+
+const api = { getItems, addItems, deleteItems, addCardLike, removeCardLike };
+export default api;
