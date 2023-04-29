@@ -1,8 +1,8 @@
 import "./ItemModal.css";
 
 function ItemModal({ card, onClose, handleDelete, currentUser }) {
-  // Checking if the current user is the owner of the current clothing item
-  const isOwn = card.owner._id === currentUser._id;
+  // Checking if the current user is the owner of the current clothing item (card)
+  const isOwn = card.owner === currentUser._id;
   // If owned delete button is visible
   const itemDeleteButtonClassName = `item-modal__delete-button ${
     isOwn ? "item-modal__delete-button" : "item-modal_delete-button_hidden"

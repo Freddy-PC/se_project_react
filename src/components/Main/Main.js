@@ -6,7 +6,15 @@ import { useContext } from "react";
 import CurrentTemperatureUnitContext from "../../contexts/CurrentTemperatureUnitContext";
 
 // cardClick = when image clicked...
-function Main({ weatherData, cards, cardClick }) {
+function Main({
+  weatherData,
+  cards,
+  cardClick,
+  onCardClick,
+  handleLikeClick,
+  isLoggedIn,
+  currentUser,
+}) {
   const { currentTemperatureUnit } = useContext(CurrentTemperatureUnitContext);
   if (!weatherData) return null;
 
@@ -43,6 +51,9 @@ function Main({ weatherData, cards, cardClick }) {
               clothing={filteredCard}
               key={index}
               cardClick={cardClick}
+              handleLikeClick={handleLikeClick}
+              isLoggedIn={isLoggedIn}
+              currentUser={currentUser}
             />
           ))}
       </ul>

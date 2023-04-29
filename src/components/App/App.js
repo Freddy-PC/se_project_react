@@ -19,7 +19,7 @@ import Profile from "../Profile/Profile";
 import CurrentTemperatureUnitContext from "../../contexts/CurrentTemperatureUnitContext";
 import AddItemModal from "../AddItemModal/AddItemModal";
 import DeleteConfirmModal from "../DeleteConfirmModal/DeleteConfirmModal";
-import { getItems, addItems, deleteItems } from "../../utils/api";
+import api from "../../utils/api";
 
 import auth from "../../utils/auth";
 import RegisterModal from "../RegisterModal/RegisterModal";
@@ -99,7 +99,8 @@ const App = () => {
 
   // Get cards in database
   useEffect(() => {
-    getItems()
+    api
+      .getItems()
       .then((items) => {
         setClothingItems(items);
       })
@@ -109,7 +110,8 @@ const App = () => {
   // Won't delete new cards??? Need to delete on database? Code that?
   // Delete card api id
   const handleCardDelete = (card) => {
-    deleteItems(card.id)
+    api
+      .deleteItems(card.id)
       .then(() => {
         setClothingItems((cards) => cards.filter((c) => c.id !== card.id));
         closeAllModals();
@@ -119,13 +121,28 @@ const App = () => {
 
   // Handler updates clothingItems state with array
   const handleAddItemSubmit = (name, link, weather) => {
-    addItems(name, link, weather)
+    api
+      .addItems(name, link, weather)
       .then((item) => {
         setClothingItems([item.data, ...clothingItems]);
         closeAllModals();
       })
       .catch((err) => console.log(err));
   };
+
+  // On page load: Fetch the user info if possible
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      auth
+        .getUser(token)
+        .then((res) => {
+          setCurrentUser(res); // res object
+          setIsLoggedIn(true); // logs user back in if refresh
+        })
+        .catch((err) => console.log(err.message));
+    }
+  }, []);
 
   // Handler for signup: close modal & automatically sign-in user
   function handleRegister({ name, avatar, email, password }) {
@@ -179,20 +196,29 @@ const App = () => {
       .catch((err) => console.log(err));
   }
 
-  // On page load: Fetch the user info if possible
-  useEffect(() => {
-    const token = localStorage.getItem("token");
-    if (token) {
-      auth
-        .getUser(token)
-        .then((res) => {
-          setCurrentUser(res); // res object
-          setIsLoggedIn(true); // logs user back in if refresh
-        })
-        .catch((err) => console.log(err.message));
-    }
-  }, []);
-
+  //
+  const handleLikeClick = ({ id, isLiked, user }) => {
+    // Check if this card is now liked
+    isLiked
+      ? // send a request to add the user's id to the card's likes array
+        api
+          .addCardLike({ id, user })
+          .then((updatedCard) => {
+            setClothingItems((cards) =>
+              cards.map((c) => (c._id === id ? updatedCard : c))
+            );
+          })
+          .catch((err) => console.log(err))
+      : // if not, send a request to remove the user's id from the card's likes array
+        api
+          .removeCardLike({ id, user })
+          .then((updatedCard) => {
+            setClothingItems((cards) =>
+              cards.map((c) => (c._id === id ? updatedCard : c))
+            );
+          })
+          .catch((err) => console.log(err));
+  };
   return (
     <CurrentUserContext.Provider value={currentUser}>
       <div className="page">
@@ -240,6 +266,9 @@ const App = () => {
                   weatherData={weatherData}
                   cards={clothingItems}
                   cardClick={handleClick}
+                  handleLikeClick={handleLikeClick}
+                  isLoggedIn={isLoggedIn}
+                  currentUser={currentUser}
                 />
               </Route>
             </Switch>

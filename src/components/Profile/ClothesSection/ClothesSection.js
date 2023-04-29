@@ -2,7 +2,7 @@ import React from "react";
 import "./ClothesSection.css";
 import ItemCard from "../../ItemCard/ItemCard.js";
 
-function ClothesSection({ cards, cardClick, addModalClick }) {
+function ClothesSection({ cards, cardClick, addModalClick, currentUser }) {
   return (
     <div className="clothes">
       <div className="clothes__header">
@@ -13,7 +13,12 @@ function ClothesSection({ cards, cardClick, addModalClick }) {
       </div>
       <ul className="clothes__items">
         {cards.map((card, index) => (
-          <ItemCard clothing={card} key={index} cardClick={cardClick} />
+          <ItemCard
+            clothing={card}
+            key={index}
+            cardClick={cardClick}
+            currentUser={currentUser}
+          />
         ))}
       </ul>
     </div>

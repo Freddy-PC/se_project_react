@@ -23,6 +23,7 @@ function Profile({
         cards={cards}
         cardClick={cardClick}
         addModalClick={addModalClick}
+        currentUser={currentUser}
       />
     </div>
   );
