@@ -10,7 +10,6 @@ function Main({
   weatherData,
   cards,
   cardClick,
-  onCardClick,
   handleLikeClick,
   isLoggedIn,
   currentUser,
@@ -33,6 +32,7 @@ function Main({
 
   // toLowerCase weather value as some may be capitalized
   // If need to see all cards then comment weatherType and .filter
+  // card.weather.toLowerCase() === weatherType())
   return (
     <main className="main">
       <WeatherCard weatherData={weatherData} />
@@ -45,11 +45,11 @@ function Main({
       </h3>
       <ul className="main__items">
         {cards
-          .filter((card) => card.weather.toLowerCase() === weatherType())
-          .map((filteredCard, index) => (
+          .filter((card) => card.weather === weatherType())
+          .map((filteredCard) => (
             <ItemCard
               clothing={filteredCard}
-              key={index}
+              key={filteredCard._id}
               cardClick={cardClick}
               handleLikeClick={handleLikeClick}
               isLoggedIn={isLoggedIn}

@@ -11,6 +11,8 @@ function Profile({
   currentUser,
   handleEditClick,
   handleLogout,
+  isLoggedIn,
+  handleLikeClick,
 }) {
   return (
     <div className="profile__container">
@@ -24,6 +26,8 @@ function Profile({
         cardClick={cardClick}
         addModalClick={addModalClick}
         currentUser={currentUser}
+        isLoggedIn={isLoggedIn}
+        handleLikeClick={handleLikeClick}
       />
     </div>
   );

@@ -19,7 +19,6 @@ const getItems = async () => {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
-      authorization: `Bearer ${localStorage.getItem("token")}`,
     },
   });
   return processServerResponse(res);
@@ -41,7 +40,6 @@ const addItems = async (name, imageUrl, weather) => {
     }),
   });
   return processServerResponse(res);
-  // .catch() handled in app.js
 };
 
 // Handler for removing an item (Using ID)
@@ -54,11 +52,10 @@ const deleteItems = async (id) => {
     },
   });
   return processServerResponse(res);
-  // .catch() handled in app.js
 };
 
 // PUT or patch???
-const addCardLike = async ({ id, user }) => {
+const addCardLike = async (id) => {
   const res = await fetch(`${baseUrl}/items/${id}/likes`, {
     method: "PUT",
     headers: {
@@ -67,7 +64,6 @@ const addCardLike = async ({ id, user }) => {
     },
   });
   return processServerResponse(res);
-  // .catch() handled in app.js
 };
 
 const removeCardLike = async (id) => {
@@ -79,7 +75,6 @@ const removeCardLike = async (id) => {
     },
   });
   return processServerResponse(res);
-  // .catch() handled in app.js
 };
 
 const api = { getItems, addItems, deleteItems, addCardLike, removeCardLike };

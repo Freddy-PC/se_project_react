@@ -1,6 +1,5 @@
 import React from "react";
 import "./SideBar.css";
-import avatarImage from "../../../images/avatar-image.png";
 
 function SideBar({ currentUser, handleEditClick, handleLogout }) {
   return (

@@ -8,37 +8,33 @@ function ItemCard({
   isLoggedIn,
   currentUser,
 }) {
-  // Check if the item was liked by the current user!!!!!!!!!!
-  console.log(currentUser);
-  console.log(clothing);
-  const isLiked = clothing.likes.some((owner) => owner._id === currentUser._id);
+  // const [isLiked, setIsLiked] = useState(null);
+  // How could I improve this?
+  const isLiked = clothing.likes?.some((user) => user == currentUser._id);
 
   const itemLikeButtonClassName = `card__like-button ${
-    isLiked ? "card__like-button" : "card__like-button_hidden"
-  }`;
+    isLiked ? "card__like-button" : "card__like-button_liked"
+  } `;
+  console.log(isLiked);
 
-  // IF logged in then current user can have like functionality
-  // Like functioality gets id & compares to currentUser
-
-  // isliked should or not update likes if user isLoggedIn???
+  // displays button if user isLoggedIn
   return (
     // List of cards
     <li className="card">
       <div className="card__wrapper">
         <h3 className="card__title">{clothing.name}</h3>
         {isLoggedIn ? (
-          <>
-            <button
-              className={itemLikeButtonClassName}
-              onClick={() => {
-                handleLikeClick(clothing._id, !isLiked);
-              }}
-            ></button>
-          </>
+          <button
+            type="button"
+            className={itemLikeButtonClassName}
+            onClick={(e) => {
+              e.stopPropagation();
+              console.log(clothing);
+              handleLikeClick(clothing._id, !isLiked);
+            }}
+          ></button>
         ) : (
-          <>
-            <button className="card__like-button"></button>
-          </>
+          <button type="button" className="card__like-button_hidden"></button>
         )}
         <img
           // When clicked gets clothig data

@@ -98,6 +98,7 @@ const App = () => {
   }, []); // Only called once to prevent Error: 429
 
   // Get cards in database
+  // Should all cards appear on main? Only user cards should appear but then auth would be needed
   useEffect(() => {
     api
       .getItems()
@@ -107,24 +108,27 @@ const App = () => {
       .catch((err) => console.log(err));
   }, []);
 
-  // Won't delete new cards??? Need to delete on database? Code that?
   // Delete card api id
-  const handleCardDelete = (card) => {
+  // if card untrue not included in array
+  const handleCardDelete = () => {
     api
-      .deleteItems(card.id)
+      .deleteItems(selectedCard._id)
       .then(() => {
-        setClothingItems((cards) => cards.filter((c) => c.id !== card.id));
+        setClothingItems((cards) =>
+          cards.filter((card) => card._id !== selectedCard._id)
+        );
         closeAllModals();
       })
       .catch((err) => console.log(err));
   };
 
-  // Handler updates clothingItems state with array
+  // add cards
   const handleAddItemSubmit = (name, link, weather) => {
     api
       .addItems(name, link, weather)
       .then((item) => {
         setClothingItems([item.data, ...clothingItems]);
+        console.log(item);
         closeAllModals();
       })
       .catch((err) => console.log(err));
@@ -197,24 +201,27 @@ const App = () => {
   }
 
   //
-  const handleLikeClick = ({ id, isLiked, user }) => {
+  const handleLikeClick = (id, isLiked) => {
     // Check if this card is now liked
+
     isLiked
       ? // send a request to add the user's id to the card's likes array
+        // card id match then update card, if not show only card
+        // data property
         api
-          .addCardLike({ id, user })
+          .addCardLike(id)
           .then((updatedCard) => {
             setClothingItems((cards) =>
-              cards.map((c) => (c._id === id ? updatedCard : c))
+              cards.map((card) => (card._id === id ? updatedCard.data : card))
             );
           })
           .catch((err) => console.log(err))
       : // if not, send a request to remove the user's id from the card's likes array
         api
-          .removeCardLike({ id, user })
+          .removeCardLike(id)
           .then((updatedCard) => {
             setClothingItems((cards) =>
-              cards.map((c) => (c._id === id ? updatedCard : c))
+              cards.map((card) => (card._id === id ? updatedCard.data : card))
             );
           })
           .catch((err) => console.log(err));
@@ -229,7 +236,6 @@ const App = () => {
             <Header
               weatherData={weatherData}
               isLoggedIn={isLoggedIn}
-              currentUser={currentUser} // remove???
               addModalClick={() => {
                 setActiveModal(MODAL_TYPE.ADD);
               }}
@@ -258,6 +264,8 @@ const App = () => {
                     }}
                     currentUser={currentUser}
                     handleLogout={handleLogout}
+                    isLoggedIn={isLoggedIn} ///
+                    handleLikeClick={handleLikeClick}
                   />
                 </Route>
               </ProtectedRoute>
