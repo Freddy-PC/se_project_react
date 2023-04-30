@@ -22,43 +22,41 @@ const LoginModal = ({ onClose, handleSignin, handleRedirect }) => {
   }
 
   return (
-    <>
-      <ModalWithForm
-        title="Log in"
-        buttonText="Log in"
-        onClose={onClose}
-        handleSubmit={handleSubmit}
-      >
-        <label className="form__heading">Email</label>
-        <input
-          className="form__input form__input_type_image"
-          name="email"
-          type="text"
-          placeholder="Email"
-          id="email"
-          required
-          onChange={handleEmail}
-          value={email}
-          minLength="1"
-          maxLength="30"
-        />
-        <label className="form__heading">Password</label>
-        <input
-          className="form__input form__input_type_image"
-          name="password"
-          type="text"
-          placeholder="Password"
-          id="password"
-          required
-          onChange={handlePassword}
-          value={password}
-          minLength="5"
-        />
-        <p className="form__auth-text" onClick={handleRedirect}>
-          or Register
-        </p>
-      </ModalWithForm>
-    </>
+    <ModalWithForm
+      title="Log in"
+      buttonText="Log in"
+      onClose={onClose}
+      handleSubmit={handleSubmit}
+    >
+      <label className="form__heading">Email</label>
+      <input
+        className="form__input form__input_type_image"
+        name="email"
+        type="text"
+        placeholder="Email"
+        id="email"
+        required
+        onChange={handleEmail}
+        value={email}
+        minLength="1"
+        maxLength="30"
+      />
+      <label className="form__heading">Password</label>
+      <input
+        className="form__input form__input_type_image"
+        name="password"
+        type="text"
+        placeholder="Password"
+        id="password"
+        required
+        onChange={handlePassword}
+        value={password}
+        minLength="5"
+      />
+      <p className="form__auth-text" onClick={handleRedirect}>
+        or Register
+      </p>
+    </ModalWithForm>
   );
 };
 

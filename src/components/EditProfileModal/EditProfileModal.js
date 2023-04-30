@@ -28,37 +28,35 @@ const EditProfileModal = ({ onClose, currentUser, handleEditProfile }) => {
   }, [currentUser]);
 
   return (
-    <>
-      <ModalWithForm
-        title="Change Profile Data"
-        buttonText="Save changes"
-        onClose={onClose}
-        handleSubmit={handleSubmit}
-      >
-        <label className="form__heading">Name</label>
-        <input
-          className="form__input form__input_type_image"
-          name="name"
-          type="text"
-          placeholder="Name"
-          id="name"
-          required
-          onChange={handleName}
-          value={name}
-        />
-        <label className="form__heading">Avatar URL</label>
-        <input
-          className="form__input form__input_type_image"
-          name="Avatar URL"
-          type="text"
-          placeholder="Avatar URL"
-          id="avatar-URL"
-          required
-          onChange={handleAvatar}
-          value={avatar}
-        />
-      </ModalWithForm>
-    </>
+    <ModalWithForm
+      title="Change Profile Data"
+      buttonText="Save changes"
+      onClose={onClose}
+      handleSubmit={handleSubmit}
+    >
+      <label className="form__heading">Name</label>
+      <input
+        className="form__input form__input_type_image"
+        name="name"
+        type="text"
+        placeholder="Name"
+        id="name"
+        required
+        onChange={handleName}
+        value={name}
+      />
+      <label className="form__heading">Avatar URL</label>
+      <input
+        className="form__input form__input_type_image"
+        name="Avatar URL"
+        type="text"
+        placeholder="Avatar URL"
+        id="avatar-URL"
+        required
+        onChange={handleAvatar}
+        value={avatar}
+      />
+    </ModalWithForm>
   );
 };
 

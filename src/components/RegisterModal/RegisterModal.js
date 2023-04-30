@@ -30,67 +30,65 @@ const RegisterModal = ({ onClose, handleRegister, handleRedirect }) => {
   }
 
   return (
-    <>
-      <ModalWithForm
-        title="Sign up"
-        buttonText="Sign up"
-        onClose={onClose}
-        handleSubmit={handleSubmit}
-      >
-        <label className="form__heading">Email</label>
-        <input
-          className="form__input form__input_type_image"
-          name="email"
-          type="text"
-          placeholder="Email"
-          id="email"
-          required
-          onChange={handleEmail}
-          value={email}
-          minLength="1"
-          maxLength="30"
-        />
-        <label className="form__heading">Password</label>
-        <input
-          className="form__input form__input_type_image"
-          name="password"
-          type="text"
-          placeholder="Password"
-          id="password"
-          required
-          onChange={handlePassword}
-          value={password}
-          minLength="5"
-        />
-        <label className="form__heading">Name</label>
-        <input
-          className="form__input form__input_type_image"
-          name="name"
-          type="text"
-          placeholder="Name"
-          id="name"
-          required
-          onChange={handleName}
-          value={name}
-          minLength="1"
-          maxLength="30"
-        />
-        <label className="form__heading">Avatar URL</label>
-        <input
-          className="form__input form__input_type_image"
-          name="Avatar URL"
-          type="url"
-          placeholder="Avatar URL"
-          id="avatar-url"
-          required
-          onChange={handleAvatar}
-          value={avatar}
-        />
-        <p className="form__auth-text" onClick={handleRedirect}>
-          or Log in
-        </p>
-      </ModalWithForm>
-    </>
+    <ModalWithForm
+      title="Sign up"
+      buttonText="Sign up"
+      onClose={onClose}
+      handleSubmit={handleSubmit}
+    >
+      <label className="form__heading">Email</label>
+      <input
+        className="form__input form__input_type_image"
+        name="email"
+        type="text"
+        placeholder="Email"
+        id="email"
+        required
+        onChange={handleEmail}
+        value={email}
+        minLength="1"
+        maxLength="30"
+      />
+      <label className="form__heading">Password</label>
+      <input
+        className="form__input form__input_type_image"
+        name="password"
+        type="text"
+        placeholder="Password"
+        id="password"
+        required
+        onChange={handlePassword}
+        value={password}
+        minLength="5"
+      />
+      <label className="form__heading">Name</label>
+      <input
+        className="form__input form__input_type_image"
+        name="name"
+        type="text"
+        placeholder="Name"
+        id="name"
+        required
+        onChange={handleName}
+        value={name}
+        minLength="1"
+        maxLength="30"
+      />
+      <label className="form__heading">Avatar URL</label>
+      <input
+        className="form__input form__input_type_image"
+        name="Avatar URL"
+        type="url"
+        placeholder="Avatar URL"
+        id="avatar-url"
+        required
+        onChange={handleAvatar}
+        value={avatar}
+      />
+      <p className="form__auth-text" onClick={handleRedirect}>
+        or Log in
+      </p>
+    </ModalWithForm>
   );
 };
 
