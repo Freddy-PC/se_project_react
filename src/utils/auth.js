@@ -1,17 +1,4 @@
-const baseUrl =
-  process.env.NODE_ENV === "production"
-    ? "https://my-json-server.typicode.com/Freddy-PC/se_project_react"
-    : "http://localhost:3001";
-
-// If works,,test if header can be refactored bc only one has a difference
-
-const processServerResponse = (res) => {
-  if (res.ok) {
-    return res.json();
-  }
-  return Promise.reject(`Error: ${res.status}`);
-};
-// Slower engine if I import same constant from api.js???
+import { processServerResponse, baseUrl } from "../utils/api";
 
 // user registration
 const userRegister = async (name, avatar, email, password) => {

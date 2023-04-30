@@ -1,7 +1,5 @@
-// Mock server (baseUrl for code reviewers)
-// access clothing from server
+// Mock server (baseUrl for code reviewers) to access clothing from server
 // "https://my-json-server.typicode.com/Freddy-PC/se_project_react"
-
 const baseUrl =
   process.env.NODE_ENV === "production"
     ? "https://my-json-server.typicode.com/Freddy-PC/se_project_react"
@@ -13,6 +11,7 @@ const processServerResponse = (res) => {
   }
   return Promise.reject(`Error: ${res.status} ${res.statusText}`);
 };
+
 // Application state to get clothing items
 const getItems = async () => {
   const res = await fetch(`${baseUrl}/items`, {
@@ -79,3 +78,4 @@ const removeCardLike = async (id) => {
 
 const api = { getItems, addItems, deleteItems, addCardLike, removeCardLike };
 export default api;
+export { processServerResponse, baseUrl };
