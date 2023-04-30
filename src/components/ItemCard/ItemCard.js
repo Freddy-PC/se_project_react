@@ -9,13 +9,13 @@ function ItemCard({
   currentUser,
 }) {
   // const [isLiked, setIsLiked] = useState(null);
-  // How could I improve this?
+  // How could I improve this with useState?
   const isLiked = clothing.likes?.some((user) => user == currentUser._id);
 
+  // if not liked empty heart
   const itemLikeButtonClassName = `card__like-button ${
-    isLiked ? "card__like-button" : "card__like-button_liked"
+    isLiked ? "card__like-button_liked" : "card__like-button"
   } `;
-  console.log(isLiked);
 
   // displays button if user isLoggedIn
   return (
@@ -27,9 +27,7 @@ function ItemCard({
           <button
             type="button"
             className={itemLikeButtonClassName}
-            onClick={(e) => {
-              e.stopPropagation();
-              console.log(clothing);
+            onClick={() => {
               handleLikeClick(clothing._id, !isLiked);
             }}
           ></button>
