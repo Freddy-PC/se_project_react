@@ -59,14 +59,14 @@ const Header = ({
           ) : (
             <>
               <button
-                className="nav__register"
+                className="nav__register-button"
                 type="button"
                 onClick={handleRegisterClick}
               >
                 Sign up
               </button>
               <button
-                className="nav__login"
+                className="nav__login-button"
                 type="button"
                 onClick={handleLoginClick}
               >
