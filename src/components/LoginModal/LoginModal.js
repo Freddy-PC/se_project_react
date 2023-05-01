@@ -3,7 +3,7 @@ import { useHistory } from "react-router-dom";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import "../ModalWithForm/ModalWithForm.js";
 
-const LoginModal = ({ onClose, handleSignin, handleRedirect }) => {
+const LoginModal = ({ onClose, handleSignin, handleRedirect, isLoading }) => {
   const history = useHistory();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -24,7 +24,7 @@ const LoginModal = ({ onClose, handleSignin, handleRedirect }) => {
   return (
     <ModalWithForm
       title="Log in"
-      buttonText="Log in"
+      buttonText={isLoading ? "Saving..." : "Log in"}
       onClose={onClose}
       handleSubmit={handleSubmit}
     >

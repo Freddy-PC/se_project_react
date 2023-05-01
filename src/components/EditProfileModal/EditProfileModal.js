@@ -3,7 +3,12 @@ import { useHistory } from "react-router-dom";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import "../ModalWithForm/ModalWithForm.js";
 
-const EditProfileModal = ({ onClose, currentUser, handleEditProfile }) => {
+const EditProfileModal = ({
+  onClose,
+  currentUser,
+  handleEditProfile,
+  isLoading,
+}) => {
   const history = useHistory();
   const [name, setName] = useState("");
   const [avatar, setAvatar] = useState("");
@@ -30,7 +35,7 @@ const EditProfileModal = ({ onClose, currentUser, handleEditProfile }) => {
   return (
     <ModalWithForm
       title="Change Profile Data"
-      buttonText="Save changes"
+      buttonText={isLoading ? "Saving..." : "Save"}
       onClose={onClose}
       handleSubmit={handleSubmit}
     >

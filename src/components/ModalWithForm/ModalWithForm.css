@@ -95,7 +95,7 @@
   color: rgba(0, 0, 0, 0.5);
 }
 .form__submit-button {
-  margin: 0;
+  margin: 20px 0 0 0;
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -116,8 +116,9 @@
 }
 
 .form__auth-text {
+  margin: 0;
   position: relative;
-  top: 43px;
+  top: 48px;
   left: 90px;
   font-family: "Cabinet Grotesk Bold", "Arial", sans-serif;
   font-size: 16px;

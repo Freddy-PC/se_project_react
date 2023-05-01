@@ -38,6 +38,7 @@ const App = () => {
   const history = useHistory();
   const [isLoggedIn, setIsLoggedIn] = useState(false); // Handle logged status
   const [currentUser, setCurrentUser] = useState({}); // No user at start
+  const [isLoading, setIsLoading] = useState(false); // watch loading states during server requests
 
   // Handle changing temp unit
   const handleToggleSwitchChange = () => {
@@ -151,6 +152,7 @@ const App = () => {
   // Handler for signup: close modal & automatically sign-in user
   // Issue? : If refreshed after signing up logged-out...
   function handleRegister({ name, avatar, email, password }) {
+    setIsLoading(true);
     auth
       .userRegister(name, avatar, email, password)
       .then((res) => {
@@ -158,12 +160,16 @@ const App = () => {
         setIsLoggedIn(true);
         setCurrentUser(res);
       })
-      .catch((err) => console.log(err));
+      .catch((err) => console.log(err))
+      .finally(() => {
+        setIsLoading(false);
+      });
   }
 
   // Handler for signin: sign-in user, check user with token
   // login success = check server gave access in response & add to localStorage
   function handleSignin(email, password) {
+    setIsLoading(true);
     auth
       .userLogin(email, password)
       .then((res) => {
@@ -181,7 +187,10 @@ const App = () => {
           })
           .catch((err) => console.log(err));
       })
-      .catch((err) => console.log(err));
+      .catch((err) => console.log(err))
+      .finally(() => {
+        setIsLoading(false);
+      });
   }
 
   function handleLogout(e) {
@@ -194,13 +203,17 @@ const App = () => {
 
   // Change profile name & avatar
   function handleEditProfile(name, avatar) {
+    setIsLoading(true);
     auth
       .editUserInfo(name, avatar)
       .then((res) => {
         closeAllModals();
         setCurrentUser(res.data);
       })
-      .catch((err) => console.log(err));
+      .catch((err) => console.log(err))
+      .finally(() => {
+        setIsLoading(false);
+      });
   }
 
   //
@@ -267,7 +280,7 @@ const App = () => {
                     }}
                     currentUser={currentUser}
                     handleLogout={handleLogout}
-                    isLoggedIn={isLoggedIn} ///
+                    isLoggedIn={isLoggedIn}
                     handleLikeClick={handleLikeClick}
                   />
                 </Route>
@@ -290,6 +303,7 @@ const App = () => {
             <AddItemModal
               onAddItem={handleAddItemSubmit}
               onClose={closeAllModals}
+              isLoading={isLoading}
             />
           )}
           {activeModal === MODAL_TYPE.PREVIEW && (
@@ -321,6 +335,7 @@ const App = () => {
               onClose={closeAllModals}
               handleRegister={handleRegister}
               handleRedirect={handleRedirect}
+              isLoading={isLoading}
             />
           )}
           {activeModal === MODAL_TYPE.LOGIN && (
@@ -328,6 +343,7 @@ const App = () => {
               onClose={closeAllModals}
               handleSignin={handleSignin}
               handleRedirect={handleRedirect}
+              isLoading={isLoading}
             />
           )}
           {activeModal === MODAL_TYPE.EDIT && (
@@ -335,6 +351,7 @@ const App = () => {
               onClose={closeAllModals}
               currentUser={currentUser}
               handleEditProfile={handleEditProfile}
+              isLoading={isLoading}
             />
           )}
         </CurrentTemperatureUnitContext.Provider>
