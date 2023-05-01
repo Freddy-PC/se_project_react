@@ -139,7 +139,7 @@ const App = () => {
     const token = localStorage.getItem("token");
     if (token) {
       auth
-        .getUser(token)
+        .checkToken(token)
         .then((res) => {
           setCurrentUser(res); // res object
           setIsLoggedIn(true); // logs user back in if refresh
@@ -149,6 +149,7 @@ const App = () => {
   }, []);
 
   // Handler for signup: close modal & automatically sign-in user
+  // Issue? : If refreshed after signing up logged-out...
   function handleRegister({ name, avatar, email, password }) {
     auth
       .userRegister(name, avatar, email, password)
@@ -158,10 +159,9 @@ const App = () => {
         setCurrentUser(res);
       })
       .catch((err) => console.log(err));
-    handleSignin(email, password);
   }
 
-  // Handler for signin: check localstorage, close modal & sign-in user
+  // Handler for signin: sign-in user, check user with token
   // login success = check server gave access in response & add to localStorage
   function handleSignin(email, password) {
     auth
@@ -173,10 +173,13 @@ const App = () => {
           closeAllModals();
           setCurrentUser(res);
         }
-        auth.getUser(res.token).then((data) => {
-          // set user token & data
-          setCurrentUser(data);
-        });
+        auth
+          .checkToken(res.token)
+          .then((data) => {
+            // set user token & data
+            setCurrentUser(data);
+          })
+          .catch((err) => console.log(err));
       })
       .catch((err) => console.log(err));
   }

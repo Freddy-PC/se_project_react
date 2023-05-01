@@ -53,7 +53,7 @@ const deleteItems = async (id) => {
   return processServerResponse(res);
 };
 
-// PUT or patch???
+// Add id into like array
 const addCardLike = async (id) => {
   const res = await fetch(`${baseUrl}/items/${id}/likes`, {
     method: "PUT",

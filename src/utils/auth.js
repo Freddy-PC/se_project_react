@@ -35,7 +35,7 @@ const userLogin = async (email, password) => {
 };
 
 // compare token validity with server (/users from express file)
-const getUser = async (token) => {
+const checkToken = async (token) => {
   const res = await fetch(`${baseUrl}/users/me`, {
     method: "GET",
     headers: {
@@ -63,5 +63,5 @@ const editUserInfo = async (name, avatar) => {
 };
 
 // Make use more apparent
-const auth = { userRegister, userLogin, getUser, editUserInfo };
+const auth = { userRegister, userLogin, checkToken, editUserInfo };
 export default auth;

@@ -8,11 +8,10 @@ function ItemCard({
   isLoggedIn,
   currentUser,
 }) {
-  // const [isLiked, setIsLiked] = useState(null);
-  // How could I improve this with useState?
-  const isLiked = clothing.likes?.some((user) => user == currentUser._id);
+  // const [isLiked, setIsLiked] = useState(null); improve??
+  const isLiked = clothing.likes.some((user) => user === currentUser._id);
 
-  // if not liked empty heart
+  // if isliked then empty heart
   const itemLikeButtonClassName = `card__like-button ${
     isLiked ? "card__like-button_liked" : "card__like-button"
   } `;
