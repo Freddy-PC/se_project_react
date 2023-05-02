@@ -1,6 +1,6 @@
 import "./ItemModal.css";
 
-function ItemModal({ card, onClose, handleDelete, currentUser }) {
+function ItemModal({ card, onClose, handleDelete, currentUser, onClick }) {
   // Checking if the current user is the owner of the current clothing item (card)
   const isOwn = card.owner === currentUser._id;
   // If owned delete button is visible
@@ -9,7 +9,7 @@ function ItemModal({ card, onClose, handleDelete, currentUser }) {
   }`;
 
   return (
-    <div className="item-modal">
+    <div className="item-modal" onClick={onClick}>
       <div className="item-modal__container">
         <button
           onClick={onClose}

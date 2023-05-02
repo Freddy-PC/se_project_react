@@ -1,4 +1,3 @@
-// Not sure hows to implement closing modal when clicked outside ????
 import React, { useState, useEffect } from "react";
 import { Switch, Route, useHistory } from "react-router-dom";
 import "./App.css";
@@ -50,7 +49,6 @@ const App = () => {
   // When image clicked...(clothing property accessed via 'card')
   const handleClick = (card) => {
     setSelectedCard(card);
-    console.log(card);
     setActiveModal(MODAL_TYPE.PREVIEW);
   };
 
@@ -74,7 +72,6 @@ const App = () => {
     setActiveModal("");
   };
 
-  // Close on "Esc" key press anywhere
   useEffect(() => {
     const closebyEsc = (evt) => {
       if (evt.key === "Escape") {
@@ -85,6 +82,11 @@ const App = () => {
     return () => window.removeEventListener("keydown", closebyEsc);
   }, []);
 
+  const handleOverlay = (e) => {
+    if (e.target === e.currentTarget) {
+      closeAllModals();
+    }
+  };
   // Get data from weatherAPI
   useEffect(() => {
     if (latitude && longitude) {
@@ -314,6 +316,7 @@ const App = () => {
                 setActiveModal(MODAL_TYPE.DELETE);
               }}
               currentUser={currentUser}
+              onClick={handleOverlay}
             />
           )}
           {activeModal === MODAL_TYPE.DELETE && (
@@ -327,6 +330,7 @@ const App = () => {
               handleCardDelete={() => {
                 handleCardDelete(selectedCard);
               }}
+              onClick={handleOverlay}
             />
           )}
 

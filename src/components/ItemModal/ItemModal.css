@@ -14,12 +14,14 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  cursor: pointer;
 }
 .item-modal__container {
   background-color: white;
   position: relative;
   border-radius: 16px;
   height: 610px;
+  cursor: default;
 }
 .item-modal__close-button {
   background: transparent url(../../images/close-button.svg) center no-repeat;

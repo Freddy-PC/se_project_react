@@ -2,8 +2,14 @@ import React from "react";
 import "./ModalWithForm.css";
 
 function ModalWithForm({ onClose, title, children, buttonText, handleSubmit }) {
+  const handleOverlay = (e) => {
+    if (e.target === e.currentTarget) {
+      onClose();
+    }
+  };
+
   return (
-    <div className="modal">
+    <div className="modal" onClick={handleOverlay}>
       <div className="modal__container">
         <button
           onClick={onClose}

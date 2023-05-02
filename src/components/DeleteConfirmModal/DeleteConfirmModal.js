@@ -1,8 +1,13 @@
 import "./DeleteConfirmModal.css";
 
-const DeleteConfirmModal = ({ onClose, handleCancel, handleCardDelete }) => {
+const DeleteConfirmModal = ({
+  onClose,
+  handleCancel,
+  handleCardDelete,
+  onClick,
+}) => {
   return (
-    <div className="delete-modal">
+    <div className="delete-modal" onClick={onClick}>
       <div className="delete-modal__container">
         <button
           onClick={onClose}
