@@ -144,15 +144,14 @@ const App = () => {
       auth
         .checkToken(token)
         .then((res) => {
-          setCurrentUser(res); // res object
-          setIsLoggedIn(true); // logs user back in if refresh
+          setCurrentUser(res);
+          setIsLoggedIn(true);
         })
         .catch((err) => console.log(err.message));
     }
   }, []);
 
   // Handler for signup: close modal & automatically sign-in user
-  // Issue? : If refreshed after signing up logged-out...
   function handleRegister({ name, avatar, email, password }) {
     setIsLoading(true);
     auth
@@ -169,14 +168,13 @@ const App = () => {
   }
 
   // Handler for signin: sign-in user, check user with token
-  // login success = check server gave access in response & add to localStorage
   function handleSignin(email, password) {
     setIsLoading(true);
     auth
       .userLogin(email, password)
       .then((res) => {
         if (res) {
-          localStorage.setItem("token", res.token); // set string token
+          localStorage.setItem("token", res.token);
           setIsLoggedIn(true);
           closeAllModals();
           setCurrentUser(res);
@@ -218,15 +216,10 @@ const App = () => {
       });
   }
 
-  //
   const handleLikeClick = (id, isLiked) => {
     // Check if this card is now liked
-
     isLiked
-      ? // send a request to add the user's id to the card's likes array
-        // card id match then update card, if not show only card
-        // data property
-        api
+      ? api
           .addCardLike(id)
           .then((updatedCard) => {
             setClothingItems((cards) =>
@@ -234,8 +227,7 @@ const App = () => {
             );
           })
           .catch((err) => console.log(err))
-      : // if not, send a request to remove the user's id from the card's likes array
-        api
+      : api
           .removeCardLike(id)
           .then((updatedCard) => {
             setClothingItems((cards) =>
@@ -244,6 +236,7 @@ const App = () => {
           })
           .catch((err) => console.log(err));
   };
+
   return (
     <CurrentUserContext.Provider value={currentUser}>
       <div className="page">

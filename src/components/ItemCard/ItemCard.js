@@ -8,7 +8,6 @@ function ItemCard({
   isLoggedIn,
   currentUser,
 }) {
-  // const [isLiked, setIsLiked] = useState(null); improve??
   const isLiked = clothing.likes.some((user) => user === currentUser._id);
 
   // if isliked then empty heart
