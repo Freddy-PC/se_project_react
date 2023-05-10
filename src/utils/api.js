@@ -2,7 +2,7 @@
 // "https://my-json-server.typicode.com/Freddy-PC/se_project_react"
 const baseUrl =
   process.env.NODE_ENV === "production"
-    ? "https://my-json-server.typicode.com/Freddy-PC/se_project_react"
+    ? "https://api.wtwrpc.epicgamer.org"
     : "http://localhost:3001";
 
 const processServerResponse = (res) => {
