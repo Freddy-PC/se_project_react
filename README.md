@@ -4,7 +4,7 @@
 
 - Project Purpose
 - How to access the Application
-- Part 2/2: The BackEnd
+- Part 2/2: The Back-End
 - Tech & Techniques
 
 ## Project Purpose
@@ -34,10 +34,9 @@ Or copy any of these addresses into your search bar:
 1. wtwrpc.epicgamer.org
 2. www.wtwrpc.epicgamer.org
 
-Here's an old version of the application that was deployed via GitHub pages:
-[Click Here](https://Freddy-PC.github.io/se_project_react)!
+Here is a [old version of the application](https://Freddy-PC.github.io/se_project_react) that was deployed via GitHub pages.
 
-I followed this Figma design: [Click Here](https://www.figma.com/file/DTojSwldenF9UPKQZd6RRb/Sprint-10%3A-WTWR)!
+I followed this [Figma design](https://www.figma.com/file/DTojSwldenF9UPKQZd6RRb/Sprint-10%3A-WTWR) to create the Front-End.
 
 ## Part 2/2: The BackEnd
 
