@@ -7,7 +7,7 @@
 - Part 2/2: The BackEnd
 - Tech & Techniques
 
-**Project Purpose**
+## Project Purpose
 
 The application's purpose is to display clothing posts from users based on the daily forecast, which is determined by an API call to the website [OpenWeather](https://openweathermap.org/).
 
@@ -26,39 +26,48 @@ Users have a variety of ways to interact with the application, they can:
 1. Edit their Profile name and image
 1. Log out of their Profile
 
-**How to access the Application**
+## How to access the Application
 
 You can visit the application by [Clicking Here](www.wtwrpc.epicgamer.org)!
-
 Or copy any of these addresses into your search bar:
 
 1. wtwrpc.epicgamer.org
 2. www.wtwrpc.epicgamer.org
 
 Here's an old version of the application that was deployed via GitHub pages:
-[CLICK HERE](https://Freddy-PC.github.io/se_project_react)!
+[Click Here](https://Freddy-PC.github.io/se_project_react)!
 
 I followed this Figma design: [Click Here](https://www.figma.com/file/DTojSwldenF9UPKQZd6RRb/Sprint-10%3A-WTWR)!
 
-**Part 2/2: The BackEnd**
+## Part 2/2: The BackEnd
 
 The functionality that allows users to interact with the application on the World Wide Web could not be possible without a Back-End.
 You can access the Back-End Repo by [Clicking Here](https://github.com/Freddy-PC/se_project_express)!
 
-**Tech & Techniques**
+## Tech & Techniques
 
 JavaScript is the programming language that brought this page to life along with other useful tech.
 
-### Tech/libraries
+#### Tech/Libraries
 
 - React
 - React Router
--
+- Webpack
+- Node Package Manager
+- API (Application Programming Interface)
 
-### Techniques
+#### Techniques
 
+- Flexbox
+- Media Queries
+- Promises
+- Fetch() Method
+- HTTP Requests (GET, POST, DELETE, PUT, PATCH)
+- JSON Formatting
+- Exporting and Importing Modules
 - Functional Components
 - useState() Hooks
 - useEffect() Hooks
 - createContext()
--
+- useHistory() Hook
+- callback functions
