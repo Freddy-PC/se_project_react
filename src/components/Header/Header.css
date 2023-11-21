@@ -17,6 +17,7 @@
 }
 .header__container {
   display: flex;
+  align-items: center;
 }
 .header__logo {
   max-height: 40px;
@@ -64,9 +65,10 @@
 }
 .navigation__user-info:hover {
   cursor: pointer;
+  opacity: 60%;
 }
 .navigation__avatar {
-  width: 40x;
+  width: 100%;
   height: 40px;
   margin-left: 12px;
 }
@@ -90,4 +92,86 @@
 .nav__login-button:hover {
   opacity: 70%;
   cursor: pointer;
+}
+
+@media screen and (max-width: 780px) {
+  .header__info {
+    font-size: 15px;
+  }
+  .navigation__container {
+    padding: 0;
+  }
+  .navigation__button {
+    font-size: 15px;
+  }
+  .navigation__user-info {
+    font-size: 15px;
+  }
+  .nav__register-button {
+    font-size: 15px;
+  }
+  .nav__login-button {
+    font-size: 15px;
+  }
+}
+
+@media screen and (max-width: 680px) {
+  .header__logo {
+    max-height: 20px;
+    max-width: 50px;
+  }
+  .header__info {
+    font-size: 13px;
+  }
+  .navigation__button {
+    font-size: 13px;
+  }
+  .navigation__user-info {
+    font-size: 13px;
+  }
+  .navigation__avatar {
+    width: 100%;
+    height: 20px;
+  }
+}
+
+@media screen and (max-width: 575px) {
+  .header__logo {
+    max-height: 20px;
+    max-width: 50px;
+  }
+  .header__container {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .header__info {
+    margin: 0;
+  }
+  .navigation__button {
+    font-size: 10px;
+  }
+  .navigation__user-info {
+    font-size: 10px;
+  }
+  .navigation__avatar {
+    width: 100%;
+    height: 20px;
+  }
+}
+
+@media screen and (max-width: 460px) {
+  .header {
+    align-items: baseline;
+  }
+  .navigation__container {
+    padding: 0;
+    flex-direction: column-reverse;
+    align-items: flex-end;
+  }
+  .nav__register-button {
+    padding: 0;
+  }
+  .nav__login-button {
+    padding: 0;
+  }
 }

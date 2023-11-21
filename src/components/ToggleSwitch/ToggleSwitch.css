@@ -61,3 +61,34 @@
 .toggle-switch__labels span:first-child {
   left: 0;
 }
+
+@media screen and (max-width: 780px) {
+  .toggle-switch {
+    width: 51px;
+    height: 20px;
+  }
+  .toggle-switch .toggle-switch__slider {
+    width: 24px;
+    height: 21px;
+  }
+}
+
+@media screen and (max-width: 575px) {
+  .toggle-switch {
+    width: 40px;
+    height: 15px;
+  }
+  .toggle-switch .toggle-switch__slider {
+    width: 20px;
+    height: 16.5px;
+  }
+  .toggle-switch__checkbox:checked + .toggle-switch__slider {
+    left: -8px;
+  }
+}
+
+@media screen and (max-width: 460px) {
+  .toggle-switch {
+    margin: 0;
+  }
+}
