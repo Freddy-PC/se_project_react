@@ -19,13 +19,21 @@
   font-size: 16px;
   font-weight: 700;
   line-height: 20px;
+  /* Position */
   position: absolute;
-  left: 105px;
+  top: 2%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   /* Border of Title */
   padding: 2px 12px 2px;
   border-radius: 2px;
   color: rgba(0, 0, 0, 0.6);
-  background-color: #fff;
+  background-color: #f2f2f2;
+  /* Long card name*/
+  max-width: 150px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
 .card__like-button {
   background: transparent url("../../images/empty_like-button.svg") center
@@ -35,9 +43,10 @@
   border: none;
   opacity: 100%;
   cursor: pointer;
-  margin: 16px 0 0 0;
   position: absolute;
-  right: 115px;
+  top: 14%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 .card__like-button:hover {
   cursor: pointer;
@@ -51,9 +60,8 @@
   border: none;
   opacity: 100%;
   cursor: pointer;
-  margin: 16px 0 0 0;
   position: absolute;
-  right: 115px;
+  right: 205px;
 }
 
 .card__image {
@@ -64,4 +72,28 @@
 }
 .card__like-button_hidden {
   display: none;
+}
+
+@media screen and (max-width: 460px) {
+  .card__title {
+    max-width: 115px;
+    transform: none;
+    left: 10px;
+    top: 91px;
+    padding: 2px;
+  }
+  .card__like-button {
+    transform: none;
+    left: 10px;
+    top: 10px;
+  }
+  .card__like-button_liked {
+    transform: none;
+    left: 10px;
+    top: 10px;
+  }
+  .card__image {
+    width: 140px;
+    height: 140px;
+  }
 }
