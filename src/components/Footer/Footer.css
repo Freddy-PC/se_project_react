@@ -16,3 +16,9 @@
   font-weight: 500;
   line-height: 20px;
 }
+
+@media screen and (max-width: 460px) {
+  .footer__text {
+    font-size: 10px;
+  }
+}
