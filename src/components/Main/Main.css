@@ -23,7 +23,11 @@
   margin: 34px 0 170px 0;
   padding: 0;
 }
-
+@media screen and (max-width: 780px) {
+  .main__header {
+    font-size: 15px;
+  }
+}
 @media screen and (max-width: 500px) {
   .main__items {
     justify-content: center;

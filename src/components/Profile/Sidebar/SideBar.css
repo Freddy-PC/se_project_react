@@ -38,6 +38,7 @@
   margin: 0 0 8px 0;
   width: 175px;
   cursor: pointer;
+  color: rgba(0, 0, 0, 0.6);
 }
 
 .sidebar__profile-data:hover {
@@ -46,9 +47,22 @@
 .sidebar__logout {
   margin: 0;
   cursor: pointer;
+  color: rgba(0, 0, 0, 0.6);
 }
 .sidebar__logout:hover {
   opacity: 0.5;
 }
-@media screen and (max-width: 710px) {
+@media screen and (max-width: 500px) {
+  .sidebar__container {
+    margin-right: 0;
+  }
+  .sidebar__name {
+    font-size: 15px;
+  }
+  .sidebar__profile-data {
+    font-size: 15px;
+  }
+  .sidebar__logout {
+    font-size: 15px;
+  }
 }

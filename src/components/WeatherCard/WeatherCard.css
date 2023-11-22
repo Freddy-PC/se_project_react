@@ -28,3 +28,9 @@
   position: absolute;
   right: 0;
 }
+
+@media screen and (max-width: 350px) {
+  .weather-card__temp {
+    font-size: 22px;
+  }
+}

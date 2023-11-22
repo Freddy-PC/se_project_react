@@ -36,3 +36,11 @@
   padding: 0;
   margin: 0;
 }
+@media screen and (max-width: 500px) {
+  .clothes__title {
+    font-size: 15px;
+  }
+  .clothes__add-button {
+    font-size: 15px;
+  }
+}
