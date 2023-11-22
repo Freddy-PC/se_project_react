@@ -4,10 +4,6 @@
   /* Should i put a format name for openType*/
 }
 
-.navigation__header-user {
-  text-decoration: none;
-  color: black;
-}
 .header {
   display: flex;
   align-items: center;
@@ -39,6 +35,7 @@
   display: flex;
   align-items: center;
   margin: 0;
+  padding: 0;
 }
 .navigation__button {
   padding: 0;
@@ -54,21 +51,30 @@
   cursor: pointer;
   opacity: 50%;
 }
-.navigation__user-info {
-  margin: 0 0 0 20px;
+.navigation__header-user {
+  text-decoration: none;
+  color: black;
   display: flex;
   align-items: center;
+}
+.navigation__user-info {
+  margin: 0 0 0 20px;
   font-family: "Cabinet Grotesk", "Arial", sans-serif;
   font-size: 20px;
   font-weight: 700;
   line-height: 25px;
+  /* Long names */
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  max-width: 90px;
 }
 .navigation__user-info:hover {
   cursor: pointer;
   opacity: 60%;
 }
 .navigation__avatar {
-  width: 100%;
+  width: 30%;
   height: 40px;
   margin-left: 12px;
 }
@@ -105,6 +111,7 @@
     font-size: 15px;
   }
   .navigation__user-info {
+    max-width: 70px;
     font-size: 15px;
   }
   .nav__register-button {
@@ -120,46 +127,27 @@
     max-height: 20px;
     max-width: 50px;
   }
-  .header__info {
-    font-size: 13px;
-  }
-  .navigation__button {
-    font-size: 13px;
-  }
-  .navigation__user-info {
-    font-size: 13px;
-  }
-  .navigation__avatar {
-    width: 100%;
-    height: 20px;
-  }
-}
-
-@media screen and (max-width: 575px) {
-  .header__logo {
-    max-height: 20px;
-    max-width: 50px;
-  }
   .header__container {
     flex-direction: column;
     align-items: flex-start;
   }
   .header__info {
+    font-size: 12px;
     margin: 0;
   }
   .navigation__button {
-    font-size: 10px;
+    font-size: 12px;
   }
   .navigation__user-info {
-    font-size: 10px;
+    max-width: 55px;
+    font-size: 12px;
   }
   .navigation__avatar {
-    width: 100%;
-    height: 20px;
+    height: 30px;
   }
 }
 
-@media screen and (max-width: 460px) {
+@media screen and (max-width: 500px) {
   .header {
     align-items: baseline;
   }

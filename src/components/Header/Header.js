@@ -45,14 +45,12 @@ const Header = ({
               </li>
               <li>
                 <NavLink to="/profile" className="navigation__header-user">
-                  <p className="navigation__user-info">
-                    {currentUser.name}
-                    <img
-                      className="navigation__avatar"
-                      src={currentUser.avatar}
-                      alt="user avatar"
-                    />
-                  </p>
+                  <p className="navigation__user-info">{currentUser.name}</p>
+                  <img
+                    className="navigation__avatar"
+                    src={currentUser.avatar}
+                    alt="user avatar"
+                  />
                 </NavLink>
               </li>
             </>

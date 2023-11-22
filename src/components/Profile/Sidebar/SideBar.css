@@ -7,17 +7,25 @@
 }
 .sidebar__info {
   display: flex;
+  align-items: center;
 }
 .sidebar__avatar {
   width: 56px;
   height: 56px;
-  margin-right: 16px;
+  margin: 0 15px 15px 0;
 }
 .sidebar__name {
   font-family: "Cabinet Grotesk", "Arial", sans-serif;
   font-weight: 700;
   font-size: 20px;
   line-height: 25px;
+  /* Custom Name area */
+  text-overflow: ellipsis;
+  overflow: hidden;
+  max-width: 205px;
+  max-width: 200px;
+  position: absolute;
+  left: 70px;
 }
 .sidebar__options {
   font-family: "Cabinet Grotesk", "Arial", sans-serif;
@@ -41,4 +49,6 @@
 }
 .sidebar__logout:hover {
   opacity: 0.5;
+}
+@media screen and (max-width: 710px) {
 }
