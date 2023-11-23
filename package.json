@@ -19,7 +19,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "predeploy": "npm run build",
-    "deploy": "npm run build && scp -r ./build/* freddythepc@wtwrpc.epicgamer.org:/home/freddythepc/frontend"
+    "deploy": "npm run build && scp -r -i /c/Users/Macho/.ssh/id_ed25519 ./build/* freddythepc@34.139.236.32:/home/freddythepc/frontend"
   },
   "eslintConfig": {
     "extends": [
