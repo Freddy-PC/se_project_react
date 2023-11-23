@@ -17,13 +17,11 @@
   cursor: pointer;
 }
 
-/*  */
-
 .modal__container {
   background-color: white;
   position: relative;
   height: 436px;
-  width: 496px;
+  width: 450px;
   border-radius: 20px;
   cursor: default;
 }
@@ -67,7 +65,7 @@
 .form__input {
   border-style: none;
   border-bottom: 1px solid;
-  width: 440px;
+  width: 400px;
   font-family: "Cabinet Grotesk Bold", "Arial", sans-serif;
   font-size: 16px;
   font-weight: 700;
@@ -88,7 +86,6 @@
 .form__input_type_radio:checked + label {
   color: rgba(0, 0, 0, 1);
 }
-/* How do i make button black ?*/
 .form__radio-label {
   font-family: "Cabinet Grotesk Bold", "Arial", sans-serif;
   font-size: 16px;
@@ -99,9 +96,6 @@
 .form__submit-button {
   margin: 20px 0 0 0;
   cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   height: 36px;
   width: 73px;
   border-radius: 4px;
@@ -121,7 +115,7 @@
   margin: 0;
   position: relative;
   top: 48px;
-  left: 90px;
+  left: 115px;
   font-family: "Cabinet Grotesk Bold", "Arial", sans-serif;
   font-size: 16px;
   font-weight: 700;
@@ -131,4 +125,17 @@
 
 .form__auth-text:hover {
   opacity: 0.6;
+}
+
+@media screen and (max-width: 500px) {
+  .modal__container {
+    width: 250px;
+    height: 410px;
+  }
+  .form__input {
+    width: 190px;
+  }
+  .form__submit-button {
+    width: 105px;
+  }
 }

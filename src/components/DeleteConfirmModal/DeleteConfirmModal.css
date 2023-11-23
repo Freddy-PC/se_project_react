@@ -53,7 +53,7 @@
 .delete-modal__title {
   max-width: 367px;
   text-align: center;
-  margin: 0;
+  margin: 0 20px 0 20px;
 }
 .delete-modal__delete-button {
   border: none;
@@ -81,4 +81,23 @@
 .delete-modal__cancel-button:hover {
   opacity: 50%;
   cursor: pointer;
+}
+
+@media screen and (max-width: 780px) {
+  .delete-modal__container {
+    max-width: 85vw;
+    max-height: 75vh;
+  }
+
+  @media screen and (max-width: 500px) {
+    .delete-modal__title {
+      font-size: 12px;
+    }
+    .delete-modal__delete-button {
+      font-size: 12px;
+    }
+    .delete-modal__cancel-button {
+      font-size: 12px;
+    }
+  }
 }
