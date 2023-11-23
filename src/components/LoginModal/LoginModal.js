@@ -27,6 +27,8 @@ const LoginModal = ({ onClose, handleSignin, handleRedirect, isLoading }) => {
       buttonText={isLoading ? "Saving..." : "Log in"}
       onClose={onClose}
       handleSubmit={handleSubmit}
+      handleRedirect={handleRedirect}
+      redirectText={"or Register"}
     >
       <label className="form__heading">Email</label>
       <input
@@ -53,9 +55,6 @@ const LoginModal = ({ onClose, handleSignin, handleRedirect, isLoading }) => {
         value={password}
         minLength="5"
       />
-      <p className="form__auth-text" onClick={handleRedirect}>
-        or Register
-      </p>
     </ModalWithForm>
   );
 };

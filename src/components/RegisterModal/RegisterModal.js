@@ -40,6 +40,8 @@ const RegisterModal = ({
       buttonText={isLoading ? "Saving..." : "Sign up"}
       onClose={onClose}
       handleSubmit={handleSubmit}
+      handleRedirect={handleRedirect}
+      redirectText={"or Log in"}
     >
       <label className="form__heading">Email</label>
       <input
@@ -90,9 +92,6 @@ const RegisterModal = ({
         onChange={handleAvatar}
         value={avatar}
       />
-      <p className="form__auth-text" onClick={handleRedirect}>
-        or Log in
-      </p>
     </ModalWithForm>
   );
 };
