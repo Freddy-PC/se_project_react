@@ -38,7 +38,7 @@ Here is a [old version of the application](https://Freddy-PC.github.io/se_projec
 
 I followed this [Figma design](https://www.figma.com/file/DTojSwldenF9UPKQZd6RRb/Sprint-10%3A-WTWR) to create the Front-End.
 
-## Part 2/2: The BackEnd
+## Part 2/2: The Back-End
 
 The functionality that allows users to interact with the application on the World Wide Web could not be possible without a Back-End.
 You can access the Back-End Repo by [Clicking Here](https://github.com/Freddy-PC/se_project_express)!
@@ -49,6 +49,9 @@ JavaScript is the programming language that brought this page to life along with
 
 #### Tech/Libraries
 
+- HTML
+- CSS
+- JavaScript
 - React
 - React Router
 - Webpack
