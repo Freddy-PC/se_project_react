@@ -12,13 +12,17 @@ const setDataFromWeatherApi = (data) => {
   if (!data) {
     return null;
   }
+  console.log(data);
   // Weather will return properties set equal to server properties:
   const weather = {};
   weather.city = data.name;
-  weather.condition = data.weather.main;
   weather.temperature = data.main.temp;
   weather.temperatureF = `${Math.round(data.main.temp)}°F`;
   weather.temperatureC = `${Math.round(((data.main.temp - 32) * 5) / 9)}°C`;
+  weather.forecast = data.weather?.[0]?.description;
+  weather.unixTime = data.dt;
+  weather.sunrise = data.sys.sunrise;
+  weather.sunset = data.sys.sunset;
 
   return weather;
 };
