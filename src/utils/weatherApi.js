@@ -12,7 +12,6 @@ const setDataFromWeatherApi = (data) => {
   if (!data) {
     return null;
   }
-  console.log(data);
   // Weather will return properties set equal to server properties:
   const weather = {};
   weather.city = data.name;
