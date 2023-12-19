@@ -9,24 +9,20 @@ function WeatherCard({ weatherData }) {
   // Return nothing if no weatherData
   if (!weatherData) return null;
 
-  console.log(weatherData);
-
   // Make a variable from API value to pass as a value
   const currentForecastName = weatherData.forecast;
 
-  ///////////////////////////////////////////////////
-  // // Logic if it's day based on unix time values
-  // const dayTime = weatherData.unixTime < weatherData.sunset;
+  const isNight = weatherData.unixTime > weatherData.sunset;
 
-  /* Find the same weather value from the array of objects 
-     and the forecast (API) array */
   const currentWeather = weatherForecast.find(
     (item) => item.name === currentForecastName
   );
 
-  /* If the weather value in the array of objects is found
-     get the image path from the array of objects */
-  const weatherImagePath = currentWeather ? currentWeather.image : null;
+  const weatherImagePath = currentWeather
+    ? isNight
+      ? currentWeather.imageNight
+      : currentWeather.imageDay
+    : null;
 
   return (
     <div className="weather-card">
@@ -40,7 +36,7 @@ function WeatherCard({ weatherData }) {
         <img
           className="weather-card__image"
           src={weatherImagePath}
-          alt="weather icon"
+          alt="Error: WeatherIcon Here!"
         />
       </div>
     </div>
