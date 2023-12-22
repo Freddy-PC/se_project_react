@@ -14,8 +14,10 @@ function WeatherCard({ weatherData }) {
 
   const isNight = weatherData.unixTime > weatherData.sunset;
 
-  const currentWeather = weatherForecast.find(
-    (item) => item.name === currentForecastName
+  const currentWeather = weatherForecast.find((item) =>
+    Array.isArray(item.name)
+      ? item.name.includes(currentForecastName)
+      : item.name === currentForecastName
   );
 
   const weatherImagePath = currentWeather

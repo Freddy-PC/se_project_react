@@ -20,17 +20,22 @@ const key = "d4a1b1f4d691f0971973d2060e56412a";
 // Array of Objects
 const weatherForecast = [
   {
-    name: "clear sky" || "scattered clouds" || "broken clouds",
+    name: "clear sky",
     imageDay: clearsky,
     imageNight: clearNight,
   },
   {
-    name: "few clouds",
+    name: [
+      "few clouds",
+      "overcast clouds",
+      "scattered clouds",
+      "broken clouds",
+    ],
     imageDay: cloudyDay,
     imageNight: cloudyNight,
   },
   {
-    name: "rain" || "shower rain",
+    name: ["rain", "shower rain"],
     imageDay: rainyDay,
     imageNight: rainyNight,
   },
