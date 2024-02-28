@@ -28,7 +28,7 @@ Users have a variety of ways to interact with the application, they can:
 
 ## How to access the Application
 
-You can visit the application by [Clicking Here](www.wtwrpc.epicgamer.org)!
+You can visit the application by [Clicking Here](https://www.wtwrpc.epicgamer.org/)!
 Or copy any of these addresses into your search bar:
 
 1. wtwrpc.epicgamer.org
