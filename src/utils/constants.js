@@ -35,7 +35,13 @@ const weatherForecast = [
     imageNight: cloudyNight,
   },
   {
-    name: ["rain", "shower rain", "moderate rain", "light rain"],
+    name: [
+      "rain",
+      "shower rain",
+      "moderate rain",
+      "light rain",
+      "heavy intensity rain",
+    ],
     imageDay: rainyDay,
     imageNight: rainyNight,
   },

@@ -14,6 +14,9 @@ function WeatherCard({ weatherData }) {
 
   const isNight = weatherData.unixTime > weatherData.sunset;
 
+  /* There are so many 'rain' values, if they are not included in 
+     the array of objects, currentWeather will return undefined */
+  // https://openweathermap.org/weather-conditions#How-to-get-icon-URL
   const currentWeather = weatherForecast.find((item) =>
     Array.isArray(item.name)
       ? item.name.includes(currentForecastName)
